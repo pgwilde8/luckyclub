@@ -1,4 +1,4 @@
-Here’s a clean **prompt you can hand to another engineer** so they immediately understand **LuckyClubWins.com** and what you need them to help build. I’ve kept it straightforward, without UrVote (since that can come later), and focused on the **user accounts + points system**.
+
 
 ---
 
