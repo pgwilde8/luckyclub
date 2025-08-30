@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from app.db import get_db
 from app.crud import create_user, authenticate_user, get_user_by_email
 from app.schemas import UserCreate, User, Token
-from app.deps import get_current_user
+#from app.deps import get_current_user
 
 load_dotenv()
 
