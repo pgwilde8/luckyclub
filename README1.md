@@ -10,7 +10,7 @@ We are building a new project called **LuckyClubWins.com**.
 
 ## 🎯 Project Overview
 
-LuckyClubWins.com is a **subscription raffle platform** where members pay monthly and get a set number of entries (points) toward that month’s prize. Each month, we run a new raffle (e.g., a Dell laptop, iPhone, or other high-value item).
+LuckyClubWins.com again!!! is a **subscription raffle platform** where members pay monthly and get a set number of entries (points) toward that month’s prize. Each month, we run a new raffle (e.g., a Dell laptop, iPhone, or other high-value item).
 
 Every member has:
 
