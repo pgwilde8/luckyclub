@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckyClub WINS - Where Dreams Become Reality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0f0f23;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-outline {
+            border-color: #ffd700;
+            color: #ffd700;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #ffd700;
+            color: #0f0f23;
+        }
+
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stats-section {
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .features-section {
+            padding: 80px 20px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .current-raffle {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        }
+
+        .raffle-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .raffle-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .raffle-prize {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .raffle-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials {
+            padding: 80px 20px;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-author {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #ffd700;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">🎰 LuckyClub WINS</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/earn-entries">Earn Entries</a>
+                <div class="auth-buttons">
+                    <a href="/login" class="btn btn-outline">Sign In</a>
+                    <a href="/register" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>🎰 LuckyClub WINS 🎰</h1>
+        <div class="tagline">Where Dreams Become Reality</div>
+        <div class="subtitle">Join thousands of winners in our monthly raffles and turn your luck into life-changing prizes!</div>
+        <div class="cta-buttons">
+            <a href="/register" class="btn btn-primary">🎯 JOIN THE CLUB</a>
+            <a href="/about" class="btn btn-outline">📖 LEARN MORE</a>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$2.5M+</div>
+                <div class="stat-label">Prizes Awarded</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,200+</div>
+                <div class="stat-label">Monthly Winners</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.8%</div>
+                <div class="stat-label">Satisfaction Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Earn Entries</div>
+                <div class="feature-description">Vote, share, and upload proof screenshots to earn raffle entries every month.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Amazing Prizes</div>
+                <div class="feature-description">From laptops and phones to cash prizes and exclusive experiences.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <div class="feature-title">Community</div>
+                <div class="feature-description">Join a vibrant community of winners and dreamers.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="current-raffle">
+        <div class="raffle-container">
+            <div class="raffle-title">🎉 Current Raffle</div>
+            <div class="raffle-prize">Dell XPS 13 Laptop + $500 Cash</div>
+            <div class="raffle-description">January 2024 - Join now and increase your chances of winning!</div>
+            <a href="/register" class="btn btn-primary">🎰 ENTER NOW</a>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"I never thought I'd win, but LuckyClub WINS made it happen! Got my dream laptop last month!"</div>
+                <div class="testimonial-author">- Sarah M., Winner</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The community is amazing and the prizes are real. I've won twice already!"</div>
+                <div class="testimonial-author">- Mike R., 2x Winner</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Best decision I made this year. Free to join, real prizes, and actually fun!"</div>
+                <div class="testimonial-author">- Lisa K., Member</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/login">Sign In</a>
+                <a href="/register">Join Now</a>
+            </div>
+            <div class="footer-text">
+                © 2024 LuckyClub WINS. Where Dreams Become Reality. 🎰
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
