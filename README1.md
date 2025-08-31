@@ -107,6 +107,12 @@ At the end of the month, the raffle is drawn based on the total points each user
 
 👉 That’s the current state. Could you help us refine the **points tracking system** so it’s clean and scalable (base + bonus entries, multiple raffles, proof uploads, admin approvals), and recommend any improvements before we lock in the database design?
 
----
-
-Would you like me to also prepare a **visual ERD (Entity Relationship Diagram)** for the DB schema so your engineer immediately sees how `users`, `raffles`, `entry_ledger`, and `proof_uploads` connect?
+              List of relations
+ Schema |      Name       | Type  |   Owner   
+--------+-----------------+-------+-----------
+ public | alembic_version | table | luckyclub
+ public | entry_ledger    | table | luckyclub
+ public | proof_uploads   | table | luckyclub
+ public | raffles         | table | luckyclub
+ public | users           | table | luckyclub
+(5 rows)
