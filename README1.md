@@ -1,8 +1,4 @@
-
-
----
-
-# 🧵 **Engineer Onboarding Prompt — LuckyClubWins.com**
+ **Engineer Onboarding Prompt — LuckyClubWins.com**
 
 We are building a new project called **LuckyClubWins.com**.
 
