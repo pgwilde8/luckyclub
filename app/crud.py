@@ -7,7 +7,7 @@ from datetime import datetime
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Password utilities
+# Password utilities 78
 def get_password_hash(password: str):
     return pwd_context.hash(password)
 
