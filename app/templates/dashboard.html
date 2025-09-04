@@ -597,10 +597,18 @@
             
             let html = '';
             proofs.forEach(proof => {
-                const statusClass = getStatusClass(proof.status);
-                const fileName = proof.file_path.split('/').pop(); // Get filename from path
-                const imageUrl = `/social-proof/${fileName}`; // Use new URL path
-                
+              const statusClass = getStatusClass(proof.status);
+            // Normalize the file path (replace backslashes with forward slashes)
+              const normalizedPath = proof.file_path.replace(/\\/g, "/");
+            // Extract the filename from the normalized path
+              const fileName = normalizedPath.split('/').pop();
+            // Construct the image URL using the mounted FastAPI static path
+              const imageUrl = `/social-proof/${fileName}`;
+
+
+
+
+
                 html += `
                     <div class="proof-item">
                         <div class="proof-info">

@@ -787,6 +787,9 @@
         // Form submissions
         document.getElementById('proof-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+
+
+            alert("test");
             
             const fileInput = document.getElementById('proof-file');
             if (!fileInput.files[0]) {
