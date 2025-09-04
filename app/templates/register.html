@@ -244,6 +244,11 @@
     </div>
 
     <script>
+        const token = localStorage.getItem("access_token");
+        if (token) {
+            window.location.href = "/dashboard";
+        }
+
         document.getElementById('register-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             

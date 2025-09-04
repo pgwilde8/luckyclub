@@ -288,62 +288,98 @@
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Hide previous messages
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('success-message').style.display = 'none';
-            
-            // Show loading
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Signing In...';
-            submitBtn.disabled = true;
-            
-            try {
-                const response = await fetch('/api/auth/token', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        username: email,
-                        password: password
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    // Store the access token
-                    localStorage.setItem('access_token', data.access_token);
-                    localStorage.setItem('user_email', email);
-                    
-                    showMessage('Login successful! Redirecting to dashboard...', 'success');
-                    setTimeout(() => {
-                        window.location.href = '/dashboard';
-                    }, 2000);
-                } else {
-                    showMessage(data.detail || 'Login failed. Please check your credentials.', 'error');
-                }
-            } catch (error) {
-                showMessage('Network error. Please check your connection.', 'error');
-            } finally {
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+    document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("login-form");
+    const submitBtn = document.querySelector(".submit-btn");
+    const errorMsg = document.getElementById("error-message");
+    const successMsg = document.getElementById("success-message");
+
+    // 🔑 Auto-redirect if already logged in
+    const existingToken = localStorage.getItem("access_token");
+    if (existingToken) {
+        fetch("/api/auth/me", {
+            headers: { Authorization: `Bearer ${existingToken}` }
+        })
+        .then(res => {
+            if (res.ok) {
+                window.location.href = "/dashboard";
+            } else {
+                localStorage.removeItem("access_token");
+                localStorage.removeItem("user_email");
             }
-        });
+        })
+        .catch(() => {}); // fail silently
+    }
+
+    // 🔑 Handle login form submit
+        loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // Reset messages
+        errorMsg.style.display = "none";
+        successMsg.style.display = "none";
+
+        // Show loading
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Signing In...";
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch("/api/auth/token", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    username: email,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Save token + email
+                localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("user_email", email);
+
+                showMessage("Login successful! Redirecting to dashboard...", "success");
+
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 1500);
+            } else {
+                showMessage(data.detail || "Login failed. Please check your credentials.", "error");
+            }
+        } catch (error) {
+            showMessage("Network error. Please check your connection.", "error");
+        } finally {
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // 🔑 Message helper
+    function showMessage(message, type) {
+        if (type === "error") {
+            errorMsg.textContent = message;
+            errorMsg.style.display = "block";
+        } else {
+            successMsg.textContent = message;
+            successMsg.style.display = "block";
+        }
+    }
+    });
         
-        function showMessage(message, type) {
+    function showMessage(message, type) {
             const element = document.getElementById(type === 'error' ? 'error-message' : 'success-message');
             element.textContent = message;
             element.style.display = 'block';
-        }
+    }
     </script>
 </body>
 </html>

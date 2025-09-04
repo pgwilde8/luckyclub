@@ -1,5 +1,10 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request , Depends , status
 from fastapi.templating import Jinja2Templates
+
+from app.deps import get_current_user_optional
+from fastapi.responses import RedirectResponse
+
+
 
 router = APIRouter()
 
@@ -26,13 +31,18 @@ async def dashboard_page(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
 @router.get("/register")
-async def register_page(request: Request):
+async def register_page(request: Request , user=Depends(get_current_user_optional)):
     """Serve the registration page"""
+    if user:  
+        return RedirectResponse(url="/dashboard", status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("register.html", {"request": request})
 
 @router.get("/login")
-async def login_page(request: Request):
-    """Serve the login page"""
+async def login_page(request: Request, user=Depends(get_current_user_optional)):
+    """Serve the login page or redirect if logged in"""
+    if user:  
+        return RedirectResponse(url="/dashboard", status_code=status.HTTP_303_SEE_OTHER)
+    
     return templates.TemplateResponse("login.html", {"request": request})
 
 @router.get("/earn-entries")
