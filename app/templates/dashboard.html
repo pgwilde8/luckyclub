@@ -477,7 +477,7 @@
                 const token = localStorage.getItem('access_token');
                 
                 // Load current raffle
-                const raffleResponse = await fetch('/api/raffles/current', {
+                const raffleResponse = await fetch('/api/raffles/active', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

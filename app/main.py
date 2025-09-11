@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
 
-from app.routes import auth, entries, proofs, health, admin, pages
+from app.routes import auth, entries, proofs, health, admin, pages, raffles
 from app.db import engine
 from app.models import Base
 
@@ -73,27 +73,28 @@ app.include_router(auth.router, prefix="/api/auth", tags=["authentication"])
 app.include_router(entries.router, prefix="/api/entries", tags=["entries"])
 app.include_router(proofs.router, prefix="/api/proofs", tags=["proofs"])
 app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
+app.include_router(raffles.router)
 
 # @app.get("/")
 # async def root():
 #     return {"message": "Welcome to LuckyClub API", "port": 9177}
 
-@app.get("/api/raffles/current")
-async def get_current_raffle():
-    """Get the currently active raffle"""
-    from app.crud import get_active_raffle
-    from app.db import get_db
+# @app.get("/api/raffles/current")
+# async def get_current_raffle():
+#     """Get the currently active raffle"""
+#     from app.crud import get_active_raffle
+#     from app.db import get_db
     
-    db = next(get_db())
-    raffle = get_active_raffle(db)
-    if raffle:
-        return {
-            "id": raffle.id,
-            "title": raffle.title,
-            "headline_prize": raffle.headline_prize,
-            "month_key": raffle.month_key
-        }
-    return {"message": "No active raffle found"}
+#     db = next(get_db())
+#     raffle = get_active_raffle(db)
+#     if raffle:
+#         return {
+#             "id": raffle.id,
+#             "title": raffle.title,
+#             "headline_prize": raffle.headline_prize,
+#             "month_key": raffle.month_key
+#         }
+#     return {"message": "No active raffle found"}
 
 @app.get("/api/dashboard")
 async def get_user_dashboard():

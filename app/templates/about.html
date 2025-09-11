@@ -1,261 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About LuckyClub - Our Story & Mission ?</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-        
-        .page-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-        
-        .page-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .content {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            margin-bottom: 3rem;
-        }
-        
-        .section h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        
-        .section p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .value-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            border-left: 4px solid #667eea;
-        }
-        
-        .value-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .team-section {
-            background: #f8f9fa;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 10px;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-        
-        @media (max-width: 768px) {
-            .nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>About LuckyClub - Who We Are</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/js/inspinia/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #eee;
+      line-height: 1.7;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 0;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 500;
+    }
+    .btn-gold {
+      background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+      border: none;
+      color: #0f0f23 !important;
+      font-weight: bold;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    }
+    /* Prevent dark background on active nav */
+    .btn-gold.active,
+    .btn-gold:active {
+      background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e) !important;
+      color: #0f0f23 !important;
+      box-shadow: none !important;
+    }
+    .page-header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(255, 215, 0, 0.05);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+    .page-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .about-container {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .about-section {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .about-section h2 {
+      color: #ffd700;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .about-section p {
+      color: #ccc;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .value-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #ffd700;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    .footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+    .footer p {
+      margin: 0.3rem 0;
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <h2>🎯 LuckyClub</h2>
-            <ul class="nav-links">
-                <!-- <li><a href="/">Home</a></li> -->
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="page-header">
-        <h1>About LuckyClub</h1>
-        <p>Building the world's fairest and most exciting raffle platform</p>
-    </section>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand logo" href="/">🎰 LuckyClub WINS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item m-1"><a href="/" class="btn btn-gold">Home</a></li>
+          <li class="nav-item m-1"><a href="/about" class="btn btn-gold active">About</a></li>
+          <li class="nav-item m-1"><a href="/contact" class="btn btn-gold">Contact</a></li>
+          <li class="nav-item m-1" id="nav-signin"><a href="/login" class="btn btn-outline btn-gold">Sign In</a></li>
+          <li class="nav-item m-1" id="nav-join"><a href="/register" class="btn btn-gold">Join Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <div class="content">
-        <div class="section">
-            <h2>Our Story</h2>
-            <p>LuckyClub was born from a simple idea: what if we could make winning amazing prizes accessible to everyone? Founded in 2024, we set out to create a platform that combines the thrill of raffles with the transparency and fairness of modern technology.</p>
-            <p>We believe that everyone deserves a chance to win life-changing prizes, and we've built LuckyClub to make that dream a reality.</p>
-        </div>
+  <!-- Header -->
+  <section class="page-header">
+    <h1>About LuckyClub</h1>
+    <p>We believe everyone deserves a chance to win something life-changing 🎁</p>
+  </section>
 
-        <div class="section">
-            <h2>Our Mission</h2>
-            <p>To create the most transparent, fair, and exciting raffle platform on the internet. We're committed to:</p>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">🎯</div>
-                    <h3>Transparency</h3>
-                    <p>Every entry is tracked and verifiable</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">⚖️</div>
-                    <h3>Fairness</h3>
-                    <p>Equal opportunities for all members</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🔒</div>
-                    <h3>Security</h3>
-                    <p>Your data and entries are protected</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🎉</div>
-                    <h3>Excitement</h3>
-                    <p>Monthly prizes that change lives</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>How It Works</h2>
-            <p>LuckyClub operates on a simple but powerful principle: monthly raffles with multiple ways to earn entries.</p>
-            <p><strong>Base Entries:</strong> Every member gets a set number of entries each month just for being part of the community.</p>
-            <p><strong>Bonus Entries:</strong> Earn additional entries by participating in community activities, sharing content, or providing proof of engagement.</p>
-            <p><strong>Monthly Draws:</strong> At the end of each month, we draw winners based on the total entries each member has accumulated.</p>
-        </div>
-
-        <div class="team-section">
-            <h2>Our Team</h2>
-            <p>LuckyClub is built and maintained by a dedicated team of developers, designers, and community managers who are passionate about creating the best possible experience for our members.</p>
-            <p>We're constantly working to improve our platform, add new features, and ensure that every member has the best chance to win amazing prizes.</p>
-        </div>
-
-        <div class="section">
-            <h2>Community Impact</h2>
-            <p>Since our launch, LuckyClub has helped thousands of people win life-changing prizes. From students getting their first laptop to families upgrading their homes, we've seen the real impact that winning can have on people's lives.</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">10,000+</div>
-                <p>Active Members</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">$500K+</div>
-                <p>Prizes Awarded</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100+</div>
-                <p>Monthly Winners</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">99.9%</div>
-                <p>Uptime</p>
-            </div>
-        </div>
+  <!-- Main About Sections -->
+  <div class="about-container">
+    <div class="about-section">
+      <h2>Our Story</h2>
+      <p>LuckyClub was founded with one vision: making high-value raffles fair and accessible. Since 2024, we've empowered thousands of dreamers through a system built on transparency, fun, and community.</p>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 LuckyClub. All rights reserved.</p>
-        <p>Join the luckiest community online!</p>
-    </footer>
+    <div class="about-section">
+      <h2>Our Mission</h2>
+      <p>To create the most transparent, exciting, and rewarding raffle platform in the world. We stand for:</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <h4>Transparency</h4>
+          <p>Every entry is logged and verifiable</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚖️</div>
+          <h4>Fairness</h4>
+          <p>Equal chance for every participant</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔒</div>
+          <h4>Security</h4>
+          <p>We use bank-level data protection</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎉</div>
+          <h4>Excitement</h4>
+          <p>Monthly prize drawings to remember</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>How It Works</h2>
+      <p>It’s simple — every month we launch a new raffle. Members receive base entries automatically. Bonus entries can be gained by sharing, voting, or submitting proof of participation. On the last day of the month, we draw random winners. 🎯</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Community & Impact</h2>
+      <p>We're not just about prizes — we're about people. From students winning their first laptops to moms upgrading the family car, our platform has already changed so many lives.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">10,000+</div>
+        <p>Active Members</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$500K+</div>
+        <p>Prizes Awarded</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <p>Monthly Winners</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">99.9%</div>
+        <p>Site Uptime</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 LuckyClub. All rights reserved.</p>
+    <p>🎰 Where Dreams Become Reality 🎰</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/inspinia/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/inspinia/js/popper.min.js"></script> <!-- ✅ needed for collapse -->
+    <script src="/js/inspinia/js/bootstrap.js"></script>
+
+  <script>
+        const token = localStorage.getItem("access_token");
+
+    if (token) {
+        // Hide Sign In and Join Now buttons
+        document.getElementById("nav-signin").style.display = "none";
+        document.getElementById("nav-join").style.display = "none";
+    }
+
+  </script>
 </body>
 </html>
