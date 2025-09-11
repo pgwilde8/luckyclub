@@ -60,8 +60,9 @@ create_sample_data()
 app = FastAPI(title="LuckyClub API", version="1.0.0")
 
 # Mount static files
-app.mount("/social-proof", StaticFiles(directory="static/social-proof"), name="social-proof")
 
+app.mount("/social-proof", StaticFiles(directory="static/social-proof"), name="social-proof")
+app.mount("/js", StaticFiles(directory="static/js"), name="js")
 # Templates
 templates = Jinja2Templates(directory="app/templates")
 
