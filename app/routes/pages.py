@@ -64,3 +64,9 @@ async def welcome_page(request: Request):
 async def pricing_page(request: Request):
     """Serve the pricing page"""
     return templates.TemplateResponse("pricing.html", {"request": request})
+
+@router.get("/forget-password")
+async def pricing_page(request: Request):
+    """Serve the forget password page"""
+    return templates.TemplateResponse("forget.html", {"request": request})
+
