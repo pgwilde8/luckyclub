@@ -1,308 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join LuckyClub WINS - Register</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckyClub WINS - Register</title>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  <!-- Inspinia CSS -->
+  <link href="/js/inspinia/css/font-awesome.css" rel="stylesheet">
+  <link href="/js/inspinia/css/animate.css" rel="stylesheet">
+  <link href="/js/inspinia/css/style.css" rel="stylesheet">
+  <link href="/js/inspinia/css/bootstrap.min.css" rel="stylesheet">
 
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            max-width: 450px;
-        }
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-
-        .logo .tagline {
-            color: #ffd700;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #ffd700;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            border: none;
-            border-radius: 10px;
-            color: #0f0f23;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .login-link a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-
-        .benefits {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid #ffd700;
-        }
-
-        .benefits h3 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .benefits ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .benefits li {
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .benefits li:before {
-            content: "🎰";
-            position: absolute;
-            left: 0;
-            color: #ffd700;
-        }
-
-        .error-message {
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid rgba(255, 0, 0, 0.5);
-            color: #ff6b6b;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .success-message {
-            background: rgba(0, 255, 0, 0.2);
-            border: 1px solid rgba(0, 255, 0, 0.5);
-            color: #51cf66;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .home-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 15px;
-            border: 2px solid #ffd700;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .home-link:hover {
-            background: #ffd700;
-            color: #0f0f23;
-        }
-    </style>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #2c003e 100%);
+      color: #f5f5f5;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container-fluid {
+      height: 100%;
+    }
+    .row {
+      height: 100%;
+    }
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+    .ad-section {
+      background: rgba(255, 215, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      text-align: left;
+    }
+    h1.logo-name {
+      font-size: 70px;
+      background: linear-gradient(45deg, #ffd700, #ff4d4d, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    .btn-gold {
+      background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+      border: none;
+      color: #0f0f23;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    }
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      transition: all 0.2s ease;
+    }
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #ffd700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+    .benefits h2 {
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+    }
+    .benefits li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+    .benefits i {
+      color: #ffd700;
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+  </style>
 </head>
 <body>
-    <a href="/" class="home-link">🏠 Home</a>
-    
-    <div class="container">
-        <div class="logo">
-            <h1>LuckyClub WINS</h1>
-            <div class="tagline">Where Dreams Become Reality</div>
+  <div class="container-fluid">
+    <div class="row">
+      
+      <!-- Left: Registration Form -->
+      <div class="col-md-6 form-section">
+        <div class="text-center">
+          <h1 class="logo-name">🎰</h1>
+          <h3>Create Your Account</h3>
+          <p>Where Dreams Become Reality</p>
         </div>
 
-        <div id="error-message" class="error-message"></div>
-        <div id="success-message" class="success-message"></div>
+        <form id="register-form" class="w-75">
+          <div class="form-group mb-3">
+            <input type="email" id="email" name="email" 
+                   class="form-control" placeholder="Email Address" required>
+          </div>
 
-        <form id="register-form">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
+          <div class="form-group mb-3">
+            <input type="password" id="password" name="password" 
+                   class="form-control" placeholder="Password" required>
+          </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
-            </div>
+          <div class="form-group mb-4">
+            <input type="password" id="confirm-password" name="confirm-password" 
+                   class="form-control" placeholder="Confirm Password" required>
+          </div>
 
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-            </div>
+          <button type="submit" class="btn btn-gold block full-width m-b w-100">🎰 Join Now 🎰</button>
 
-            <button type="submit" class="submit-btn">🎰 JOIN THE CLUB 🎰</button>
+          <p class="text-muted text-center mt-3"><small>Already have an account?</small></p>
+          <a class="btn btn-sm btn-white btn-primary w-100" href="/login">Sign In</a>
         </form>
+      </div>
 
-        <div class="login-link">
-            Already have an account? <a href="/login">Sign In Here</a>
-        </div>
-
+      <!-- Right: Advertisement / Benefits -->
+      <div class="col-md-6 ad-section">
         <div class="benefits">
-            <h3>🎯 Why Join LuckyClub WINS?</h3>
-            <ul>
-                <li>Earn entries through voting, sharing & proof uploads</li>
-                <li>Participate in monthly raffles with amazing prizes</li>
-                <li>Join a community of winners</li>
-                <li>100% free to join and participate</li>
-            </ul>
+          <h2>Why Join LuckyClub WINS?</h2>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> Earn entries through voting, sharing & proof uploads</li>
+            <li><i class="bi bi-gift-fill"></i> Participate in monthly raffles with amazing prizes</li>
+            <li><i class="bi bi-people-fill"></i> Join a community of winners</li>
+            <li><i class="bi bi-stars"></i> 100% free to join and participate</li>
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        const token = localStorage.getItem("access_token");
-        if (token) {
-            window.location.href = "/dashboard";
-        }
-
-        document.getElementById('register-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            // Hide previous messages
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('success-message').style.display = 'none';
-            
-            // Basic validation
-            if (password !== confirmPassword) {
-                showMessage('Passwords do not match!', 'error');
-                return;
-            }
-            
-            if (password.length < 8) {
-                showMessage('Password must be at least 8 characters long!', 'error');
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showMessage('Registration successful! Redirecting to login...', 'success');
-                    setTimeout(() => {
-                        window.location.href = '/login';
-                    }, 2000);
-                } else {
-                    showMessage(data.detail || 'Registration failed. Please try again.', 'error');
-                }
-            } catch (error) {
-                showMessage('Network error. Please check your connection.', 'error');
-            }
-        });
-        
-        function showMessage(message, type) {
-            const element = document.getElementById(type === 'error' ? 'error-message' : 'success-message');
-            element.textContent = message;
-            element.style.display = 'block';
-        }
-    </script>
+  <!-- Inspinia JS -->
+  <script src="/js/inspinia/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/inspinia/js/popper.min.js"></script>
+  <script src="/js/inspinia/js/bootstrap.js"></script>
 </body>
 </html>
