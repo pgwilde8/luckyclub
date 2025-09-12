@@ -11,14 +11,25 @@ import asyncio
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+# conf = ConnectionConfig(
+#     MAIL_USERNAME="villavizacamilo31@gmail.com",   # your Gmail
+#     MAIL_PASSWORD="mqjj ttcy kgym ublo",           # your App Password
+#     MAIL_FROM="luckyclubwins@gmail.com",           # sender email (can be same as username)
+#     MAIL_PORT=587,
+#     MAIL_SERVER="smtp.gmail.com",
+#     MAIL_STARTTLS=True,
+#     MAIL_SSL_TLS=False,
+#     USE_CREDENTIALS=True
+# )
+
 conf = ConnectionConfig(
-    MAIL_USERNAME="villavizacamilo31@gmail.com",   # your Gmail
-    MAIL_PASSWORD="mqjj ttcy kgym ublo",           # your App Password
-    MAIL_FROM="luckyclubwins@gmail.com",           # sender email (can be same as username)
-    MAIL_PORT=587,
+    MAIL_USERNAME="villavizacamilo31@gmail.com",
+    MAIL_PASSWORD="mqjj ttcy kgym ublo",
+    MAIL_FROM="villavizacamilo31@gmail.com",
+    MAIL_PORT=465,
     MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=True,
-    MAIL_SSL_TLS=False,
+    MAIL_STARTTLS=False,
+    MAIL_SSL_TLS=True,
     USE_CREDENTIALS=True
 )
 
