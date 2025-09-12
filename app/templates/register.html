@@ -220,6 +220,9 @@ function toggleRule(element, valid, text) {
 registerForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.disabled = true;          // Disable the button
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
@@ -251,6 +254,9 @@ registerForm.addEventListener('submit', async function(e) {
             showMessage('Registration successful! Redirecting to login...', 'success');
             setTimeout(() => window.location.href = '/login', 2000);
         } else {
+
+           submitBtn.disabled = false;          // Disable the button
+
             if (data.detail) {
                 if (typeof data.detail === 'string') {
                     showMessage(data.detail, 'error');

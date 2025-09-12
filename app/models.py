@@ -3,12 +3,14 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db import Base
 
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String(255), unique=True, nullable=False, index=True)
     hashed_password = Column(String(255), nullable=False)  # replace with real auth later
     is_active = Column(Boolean, default=False)
+    verification_token = Column(String(255), unique=True, nullable=True, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class Raffle(Base):

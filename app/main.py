@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
 
-from app.routes import auth, entries, proofs, health, admin, pages, raffles
+from app.routes import auth, entries, proofs, health, admin, pages, raffles,verify,email
 from app.db import engine
 from app.models import Base
 
@@ -74,7 +74,8 @@ app.include_router(entries.router, prefix="/api/entries", tags=["entries"])
 app.include_router(proofs.router, prefix="/api/proofs", tags=["proofs"])
 app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
 app.include_router(raffles.router)
-
+app.include_router(verify.router)
+app.include_router(email.router)
 # @app.get("/")
 # async def root():
 #     return {"message": "Welcome to LuckyClub API", "port": 9177}
