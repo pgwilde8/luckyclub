@@ -6,32 +6,12 @@ from typing import List, Optional
 from datetime import datetime
 from uuid import uuid4
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-import asyncio
+from app.utils.brevo_email import send_verification_email
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# conf = ConnectionConfig(
-#     MAIL_USERNAME="villavizacamilo31@gmail.com",   # your Gmail
-#     MAIL_PASSWORD="mqjj ttcy kgym ublo",           # your App Password
-#     MAIL_FROM="luckyclubwins@gmail.com",           # sender email (can be same as username)
-#     MAIL_PORT=587,
-#     MAIL_SERVER="smtp.gmail.com",
-#     MAIL_STARTTLS=True,
-#     MAIL_SSL_TLS=False,
-#     USE_CREDENTIALS=True
-# )
 
-conf = ConnectionConfig(
-    MAIL_USERNAME="villavizacamilo31@gmail.com",
-    MAIL_PASSWORD="mqjj ttcy kgym ublo",
-    MAIL_FROM="villavizacamilo31@gmail.com",
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=False,
-    MAIL_SSL_TLS=True,
-    USE_CREDENTIALS=True
-)
 
 # Password utilities
 def get_password_hash(password: str):
@@ -47,7 +27,7 @@ def get_user(db: Session, user_id: int):
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
-async def create_user(db: Session, user: UserCreate):
+def create_user(db: Session, user: UserCreate):
     hashed_password = get_password_hash(user.password)
     token = str(uuid4())
     db_user = User(
@@ -60,7 +40,7 @@ async def create_user(db: Session, user: UserCreate):
     db.commit()
     db.refresh(db_user)
 
-    await send_verification_email(user.email,token)
+    send_verification_email(user.email,token)
     return db_user
 
 def authenticate_user(db: Session, email: str, password: str):
@@ -178,14 +158,3 @@ def review_proof(db: Session, proof_id: int, status: str, amount: int = None):
     db.commit()
     db.refresh(proof)
     return proof
-
-async def send_verification_email(email: str, token: str):
-    verification_link = f"http://localhost:9177/api/verify/{token}"
-    message = MessageSchema(
-        subject="LuckyClub Wins,Verify your email",
-        recipients=[email],
-        body=f"Click here to verify your account: {verification_link}",
-        subtype="html"
-    )
-    fm = FastMail(conf)
-    await fm.send_message(message)
