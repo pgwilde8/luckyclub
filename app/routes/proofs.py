@@ -69,7 +69,7 @@ async def create_proof_upload_endpoint(
         db=db,
         proof=proof_data,
         user_id=current_user.id,
-        file_path=unique_filename
+        file_path=file_path
     )
 
 @router.get("/", response_model=List[ProofUpload])
