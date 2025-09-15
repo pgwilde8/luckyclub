@@ -49,7 +49,7 @@ async def create_proof_upload_endpoint(
             content = await file.read()
             buffer.write(content)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=e)
+        raise HTTPException(status_code=500, detail="Failed to save file")
     
     # Create proof upload record
     proof_data = ProofUploadCreate(raffle_id=raffle_id, kind=kind)
