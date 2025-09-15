@@ -14,7 +14,9 @@ from app.models import User
 router = APIRouter()
 
 UPLOAD_DIR = "static/social-proof"
-MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @router.post("/", response_model=ProofUpload)
 async def create_proof_upload_endpoint(
@@ -24,34 +26,31 @@ async def create_proof_upload_endpoint(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Upload proof for a raffle entry"""
-    # Validate file type
     if not file.content_type.startswith('image/'):
         raise HTTPException(status_code=400, detail="File must be an image")
-    
-    # Validate file size
-    if file.size and file.size > MAX_FILE_SIZE:
+
+    # Read file in memory to check its length
+    content = await file.read()
+    if len(content) > MAX_FILE_SIZE:
         raise HTTPException(status_code=400, detail="File too large")
-    
-    # Check if raffle exists and is active
+
+    # Validate raffle
     active_raffle = get_active_raffle(db)
     if not active_raffle or active_raffle.id != raffle_id:
         raise HTTPException(status_code=400, detail="Invalid or inactive raffle")
-    
-    # Generate unique filename
+
+    # Save file
     file_extension = os.path.splitext(file.filename)[1]
     unique_filename = f"{uuid.uuid4()}{file_extension}"
     file_path = os.path.join(UPLOAD_DIR, unique_filename)
-    
-    # Save file
+
     try:
         with open(file_path, "wb") as buffer:
-            content = await file.read()
             buffer.write(content)
     except Exception as e:
-        raise HTTPException(status_code=500, detail="Failed to save file")
-    
-    # Create proof upload record
+        raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+
+    # Record in DB
     proof_data = ProofUploadCreate(raffle_id=raffle_id, kind=kind)
     return create_proof_upload(
         db=db,
