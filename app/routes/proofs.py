@@ -19,7 +19,7 @@ MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
 # Ensure both directories exist
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-os.makedirs(FALLBACK_DIR, exist_ok=True)
+
 
 def get_writable_upload_path(filename: str) -> str:
     """Returns a writable path for saving the uploaded file."""
@@ -31,6 +31,7 @@ def get_writable_upload_path(filename: str) -> str:
         os.remove(test_path)
         return primary_path
     except Exception:
+        os.makedirs(FALLBACK_DIR, exist_ok=True)
         fallback_path = os.path.join(FALLBACK_DIR, filename)
         print("⚠️ Falling back to /tmp due to write restrictions.")
         return fallback_path
@@ -56,6 +57,7 @@ async def create_proof_upload_endpoint(
 
     file_extension = os.path.splitext(file.filename)[1]
     unique_filename = f"{uuid.uuid4()}{file_extension}"
+
     file_path = get_writable_upload_path(unique_filename)
 
     try:
