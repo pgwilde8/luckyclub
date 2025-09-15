@@ -262,7 +262,7 @@
           'approved': 'status-approved',
           'rejected': 'status-rejected'
         }[p.status];
-        const url = `/social-proof/${p.file_path.replace(/\\/g, "/").split('/').pop()}`;
+        const url = `/social-proof/${p.file_path}`;
         list.innerHTML += `
           <div class="proof-card">
             <strong>${p.kind}</strong><br/>

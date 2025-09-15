@@ -13,7 +13,7 @@ from app.models import User
 
 router = APIRouter()
 
-UPLOAD_DIR = "tmp1/social-proof/"
+UPLOAD_DIR = "static/social-proof/"
 FALLBACK_DIR = "tmp/social-proof/"
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
@@ -69,7 +69,7 @@ async def create_proof_upload_endpoint(
         db=db,
         proof=proof_data,
         user_id=current_user.id,
-        file_path=file_path
+        file_path=unique_filename
     )
 
 @router.get("/", response_model=List[ProofUpload])
