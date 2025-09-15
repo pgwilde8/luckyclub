@@ -13,8 +13,8 @@ from app.models import User
 
 router = APIRouter()
 
-UPLOAD_DIR = "/opt/webwise/luckyclub/static/social-proof/"
-FALLBACK_DIR = "/opt/webwise/luckyclub/tmp/social-proof/"
+UPLOAD_DIR = "static/social-proof/"
+FALLBACK_DIR = "tmp/social-proof/"
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
 # Ensure both directories exist
