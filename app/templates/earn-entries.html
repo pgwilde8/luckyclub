@@ -524,28 +524,6 @@
         <div id="success-message" class="success-message"></div>
         <div id="error-message" class="error-message"></div>
 
-        <div class="current-stats">
-            <h2>📊 Your Current Status</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="total-entries">-</div>
-                    <div class="stat-label">Total Entries</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="base-entries">-</div>
-                    <div class="stat-label">Base Entries</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="bonus-entries">-</div>
-                    <div class="stat-label">Bonus Entries</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="pending-proofs">-</div>
-                    <div class="stat-label">Pending Proofs</div>
-                </div>
-            </div>
-        </div>
-
         <div class="entry-methods">
             <!-- Proof Upload Method -->
             <div class="entry-method">
@@ -609,19 +587,19 @@
                     
                     <form id="voting-form">
                         <div class="poll-option">
-                            <input type="radio" name="poll-choice" value="laptop" id="choice1">
+                            <input type="radio" name="poll-choice" value="Gaming Laptop" id="choice1">
                             <label for="choice1">💻 Gaming Laptop</label>
                         </div>
                         <div class="poll-option">
-                            <input type="radio" name="poll-choice" value="phone" id="choice2">
+                            <input type="radio" name="poll-choice" value="Smartphone" id="choice2">
                             <label for="choice2">📱 Smartphone</label>
                         </div>
                         <div class="poll-option">
-                            <input type="radio" name="poll-choice" value="cash" id="choice3">
+                            <input type="radio" name="poll-choice" value="Cash Prize" id="choice3">
                             <label for="choice3">💰 Cash Prize</label>
                         </div>
                         <div class="poll-option">
-                            <input type="radio" name="poll-choice" value="vacation" id="choice4">
+                            <input type="radio" name="poll-choice" value="Vacation Package" id="choice4">
                             <label for="choice4">✈️ Vacation Package</label>
                         </div>
                         
@@ -673,11 +651,15 @@
                     <form id="facebook-share-form">
                         <div class="form-group">
                             <label class="checkbox-label">
-                                <input type="checkbox" id="confirm-share" required>
+                               
                                 <span class="checkmark"></span>
                                 I have shared LuckyClub WINS on Facebook
+
+
                             </label>
                         </div>
+
+                         <input type="checkbox" id="confirm-share" required>
                         
                         <div class="form-group">
                             <label for="share-screenshot">Screenshot of Your Facebook Post</label>
@@ -694,6 +676,8 @@
                             <button type="button" class="btn btn-outline" onclick="hideSharing()">❌ Cancel</button>
                         </div>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -734,16 +718,7 @@
             }
         }
 
-        // Update statistics display
-        function updateStats(data) {
-            if (data.user_stats) {
-                document.getElementById('total-entries').textContent = data.user_stats.total_entries;
-                document.getElementById('base-entries').textContent = data.user_stats.base_entries;
-                document.getElementById('bonus-entries').textContent = 
-                    data.user_stats.vote_entries + data.user_stats.share_entries + data.user_stats.upload_entries;
-                document.getElementById('pending-proofs').textContent = data.pending_proofs || 0;
-            }
-        }
+
 
         // Proof upload functions
         function showProofUpload() {
@@ -857,16 +832,16 @@
             
             try {
                 const token = localStorage.getItem('access_token');
-                const response = await fetch('/api/entries/', {
+                const response = await fetch('/api/vote/votes', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        source: 'vote',
-                        amount: 2,
-                        description: `Voted for: ${choice.value}`
+                        body: JSON.stringify({
+                        year: new Date().getFullYear(),
+                        month: new Date().getMonth() + 1, // JS months are 0-based
+                        prize_name: choice.value
                     })
                 });
                 
@@ -897,6 +872,8 @@
         // Facebook share form submission
         document.getElementById('facebook-share-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            alert("dog")
             
             const confirmed = document.getElementById('confirm-share').checked;
             const screenshot = document.getElementById('share-screenshot').files[0];
@@ -982,7 +959,7 @@
         }
 
         function viewPolls() {
-            alert('More polls coming soon!');
+            window.location.href = '/dashboard';
         }
 
         function viewShares() {

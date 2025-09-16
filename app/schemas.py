@@ -93,3 +93,19 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+# Shared fields
+class VoteBase(BaseModel):
+    year: int
+    month: int
+    prize_name: str
+
+# For creating a vote (request body)
+class VoteCreate(VoteBase):
+    pass
+
+# For returning a vote (response)
+class VoteResponse(VoteBase):
+    vote_id: int   # include primary key in response
+    class Config:
+        orm_mode = True  # allows ORM objects (SQLAlchemy) to be converted to Pydantic

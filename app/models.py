@@ -44,3 +44,11 @@ class ProofUpload(Base):
     status = Column(String(20), default="pending")  # pending | approved | rejected
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     reviewed_at = Column(DateTime(timezone=True), nullable=True)
+
+class Vote(Base):
+    __tablename__ = "votes"
+    vote_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
+    year = Column(Integer, nullable=False)
+    month = Column(Integer, nullable=False)
+    prize_name = Column(String(100), nullable=False)

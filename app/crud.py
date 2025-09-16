@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import User, Raffle, EntryLedger, ProofUpload
+from app.models import User, Raffle, EntryLedger, ProofUpload,Vote
 from app.schemas import UserCreate, RaffleCreate, EntryLedgerCreate, ProofUploadCreate
 from passlib.context import CryptContext
 from typing import List, Optional
@@ -158,3 +158,23 @@ def review_proof(db: Session, proof_id: int, status: str, amount: int = None):
     db.commit()
     db.refresh(proof)
     return proof
+
+
+def save_vote(db: Session, user_id: int, year: int, month: int, prize_name: str):
+    """
+    Save a new vote in the votes table.
+    Only one vote per user per year+month is allowed.
+    """
+ 
+
+    # create new vote
+    new_vote = Vote(
+        user_id=user_id,
+        year=year,
+        month=month,
+        prize_name=prize_name
+    )
+    db.add(new_vote)
+    db.commit()
+    db.refresh(new_vote)
+    return new_vote
