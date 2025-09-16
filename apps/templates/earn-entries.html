@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Entries - LuckyClub WINS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-email {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #ff6b6b;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .current-stats {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .entry-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .entry-method {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .entry-method:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .method-icon {
+            font-size: 3rem;
+        }
+
+        .method-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .method-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .method-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .method-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0f0f23;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-outline {
+            border-color: #ffd700;
+            color: #ffd700;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #ffd700;
+            color: #0f0f23;
+        }
+
+        .btn-disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .proof-upload-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .file-upload {
+            border: 2px dashed rgba(255, 215, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .voting-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .poll-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .poll-option:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .poll-option.selected {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .poll-option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .sharing-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .share-btn.linkedin {
+            background: #0077b5;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            color: #51cf66;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            color: #ff6b6b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .checkbox-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            height: 20px;
+            width: 20px;
+            background-color: #ffd700;
+            border-radius: 5px;
+            margin-right: 10px;
+            border: 2px solid #ffd700;
+        }
+
+        .checkbox-label input:checked ~ .checkmark {
+            background-color: #ffd700;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-label input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .share-instructions {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .entry-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">🎰 LuckyClub WINS</div>
+            <div class="nav-links">
+                <!-- <a href="/">Home</a> -->
+                <a href="/dashboard">Dashboard</a>
+                <a href="/earn-entries">Earn Entries</a>
+                <div class="user-info">
+                    <span class="user-email" id="user-email">Loading...</span>
+                    <a href="#" class="logout-btn" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">🎯 Earn Raffle Entries</h1>
+            <p class="page-subtitle">Complete activities to increase your chances of winning!</p>
+        </div>
+
+        <div id="success-message" class="success-message"></div>
+        <div id="error-message" class="error-message"></div>
+
+        <div class="entry-methods">
+            <!-- Proof Upload Method -->
+            <div class="entry-method">
+                <div class="method-header">
+                    <div class="method-icon">📸</div>
+                    <div>
+                        <h3 class="method-title">Upload Proof Screenshots</h3>
+                        <p class="method-subtitle">Earn 3-5 entries per proof</p>
+                    </div>
+                </div>
+                <p class="method-description">
+                    Upload screenshots of your activities (voting, sharing, etc.) to earn bonus entries. 
+                    Any screenshot showing your participation is accepted. Each approved screenshot gives you 3-5 additional raffle entries.
+                </p>
+                <div class="method-actions">
+                    <button class="btn btn-primary" onclick="showProofUpload()">📸 Upload Proof</button>
+                    <button class="btn btn-outline" onclick="viewMyProofs()">👀 View My Proofs</button>
+                </div>
+                
+                <div class="proof-upload-form" id="proof-upload-form">
+                    <h4>📸 Upload Your Screenshot</h4>
+                    <form id="proof-form">
+                        <div class="form-group">
+                            <div class="file-upload" onclick="document.getElementById('proof-file').click()">
+                                <input type="file" id="proof-file" name="proof-file" accept="image/*" required>
+                                <div class="upload-icon">📁</div>
+                                <div class="upload-text">Click to upload screenshot</div>
+                                <div class="upload-hint">PNG, JPG, GIF up to 10MB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-actions">
+                            <button type="submit" class="btn btn-primary">🚀 Submit Screenshot</button>
+                            <button type="button" class="btn btn-outline" onclick="hideProofUpload()">❌ Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Voting Method -->
+            <div class="entry-method">
+                <div class="method-header">
+                    <div class="method-icon">🗳️</div>
+                    <div>
+                        <h3 class="method-title">Community Voting</h3>
+                        <p class="method-subtitle">Earn 2 entries per vote</p>
+                    </div>
+                </div>
+                <p class="method-description">
+                    Participate in community polls and surveys. Each vote earns you 2 raffle entries 
+                    and helps shape the future of LuckyClub WINS.
+                </p>
+                <div class="method-actions">
+                    <button class="btn btn-primary" onclick="showVoting()">🗳️ Vote Now</button>
+                    <button class="btn btn-outline" onclick="viewPolls()">📊 View Polls</button>
+                </div>
+                
+                <div class="voting-section" id="voting-section">
+                    <h4>🗳️ Current Community Poll</h4>
+                    <p>What prize would you like to see in our next raffle?</p>
+                    
+                    <form id="voting-form">
+                        <div class="poll-option">
+                            <input type="radio" name="poll-choice" value="Gaming Laptop" id="choice1">
+                            <label for="choice1">💻 Gaming Laptop</label>
+                        </div>
+                        <div class="poll-option">
+                            <input type="radio" name="poll-choice" value="Smartphone" id="choice2">
+                            <label for="choice2">📱 Smartphone</label>
+                        </div>
+                        <div class="poll-option">
+                            <input type="radio" name="poll-choice" value="Cash Prize" id="choice3">
+                            <label for="choice3">💰 Cash Prize</label>
+                        </div>
+                        <div class="poll-option">
+                            <input type="radio" name="poll-choice" value="Vacation Package" id="choice4">
+                            <label for="choice4">✈️ Vacation Package</label>
+                        </div>
+                        
+                        <div class="method-actions">
+                            <button type="submit" class="btn btn-primary">🗳️ Submit Vote</button>
+                            <button type="button" class="btn btn-outline" onclick="hideVoting()">❌ Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sharing Method -->
+            <div class="entry-method">
+                <div class="method-header">
+                    <div class="method-icon">📘</div>
+                    <div>
+                        <h3 class="method-title">Share on Facebook</h3>
+                        <p class="method-subtitle">Earn 1 entry per share</p>
+                    </div>
+                </div>
+                <p class="method-description">
+                    Share LuckyClub WINS on Facebook to earn raffle entries. Post about our current raffle 
+                    or share our website, then upload a screenshot of your post.
+                </p>
+                <div class="method-actions">
+                    <button class="btn btn-primary" onclick="showFacebookShare()">📘 Share on Facebook</button>
+                    <button class="btn btn-outline" onclick="viewMyShares()">📊 View My Shares</button>
+                </div>
+                
+                <div class="sharing-section" id="sharing-section">
+                    <h4>📘 Facebook Share</h4>
+                    <p>Share LuckyClub WINS on Facebook to earn 1 entry!</p>
+                    
+                    <div class="share-instructions">
+                        <h5>📝 What to Post:</h5>
+                        <ul>
+                            <li>Share our current raffle: "Dell XPS 13 Laptop + $500 Cash"</li>
+                            <li>Or share our website: luckyclubwins.com</li>
+                            <li>Include a message about winning amazing prizes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn facebook" onclick="shareOnFacebook()">
+                            📘 Share on Facebook
+                        </a>
+                    </div>
+                    
+                    <form id="facebook-share-form">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                               
+                                <span class="checkmark"></span>
+                                I have shared LuckyClub WINS on Facebook
+
+
+                            </label>
+                        </div>
+
+                         <input type="checkbox" id="confirm-share" required>
+                        
+                        <div class="form-group">
+                            <label for="share-screenshot">Screenshot of Your Facebook Post</label>
+                            <div class="file-upload" onclick="document.getElementById('share-screenshot').click()">
+                                <input type="file" id="share-screenshot" name="share-screenshot" accept="image/*" required>
+                                <div class="upload-icon">📁</div>
+                                <div class="upload-text">Click to upload screenshot</div>
+                                <div class="upload-hint">PNG, JPG, GIF up to 10MB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-actions">
+                            <button type="submit" class="btn btn-primary">✅ Submit Share</button>
+                            <button type="button" class="btn btn-outline" onclick="hideSharing()">❌ Cancel</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('access_token');
+            const email = localStorage.getItem('user_email');
+            
+            if (!token || !email) {
+                window.location.href = '/login';
+                return;
+            }
+            
+            document.getElementById('user-email').textContent = email;
+            loadUserStats();
+        }
+
+        // Load user statistics
+        async function loadUserStats() {
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                const response = await fetch('/api/dashboard', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    updateStats(data);
+                }
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+
+
+        // Proof upload functions
+        function showProofUpload() {
+            document.getElementById('proof-upload-form').style.display = 'block';
+            document.getElementById('voting-section').style.display = 'none';
+            document.getElementById('sharing-section').style.display = 'none';
+        }
+
+        function hideProofUpload() {
+            document.getElementById('proof-upload-form').style.display = 'none';
+        }
+
+        // Voting functions
+        function showVoting() {
+            document.getElementById('voting-section').style.display = 'block';
+            document.getElementById('proof-upload-form').style.display = 'none';
+            document.getElementById('sharing-section').style.display = 'none';
+        }
+
+        function hideVoting() {
+            document.getElementById('voting-section').style.display = 'none';
+        }
+
+        // Sharing functions
+        function showSharing() {
+            document.getElementById('sharing-section').style.display = 'block';
+            document.getElementById('proof-upload-form').style.display = 'none';
+            document.getElementById('voting-section').style.display = 'none';
+        }
+
+        function showFacebookShare() {
+            document.getElementById('sharing-section').style.display = 'block';
+            document.getElementById('proof-upload-form').style.display = 'none';
+            document.getElementById('voting-section').style.display = 'none';
+        }
+
+        function hideSharing() {
+            document.getElementById('sharing-section').style.display = 'none';
+        }
+
+        // Form submissions
+        document.getElementById('proof-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+
+            alert("test");
+            
+            const fileInput = document.getElementById('proof-file');
+            if (!fileInput.files[0]) {
+                showMessage('Please select a screenshot to upload', 'error');
+                return;
+            }
+            
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                // First get the current raffle ID
+                const raffleResponse = await fetch('/api/raffles/active', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (!raffleResponse.ok) {
+                    showMessage('Failed to get current raffle information', 'error');
+                    return;
+                }
+                
+                const raffle = await raffleResponse.json();
+                if (!raffle.id) {
+                    showMessage('No active raffle found', 'error');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('raffle_id', raffle.id);
+                formData.append('kind', 'screenshot');
+                formData.append('file', fileInput.files[0]);
+                
+                const response = await fetch('/api/proofs/', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    showMessage('Screenshot uploaded successfully! You will earn 3-5 entries once approved.', 'success');
+                    hideProofUpload();
+                    loadUserStats();
+                    // Reset form
+                    document.getElementById('proof-form').reset();
+                } else {
+                    const error = await response.json();
+                    showMessage(error.detail || 'Failed to upload screenshot', 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+            }
+        });
+
+        document.getElementById('voting-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const choice = document.querySelector('input[name="poll-choice"]:checked');
+            if (!choice) {
+                showMessage('Please select an option', 'error');
+                return;
+            }
+            
+            try {
+                const token = localStorage.getItem('access_token');
+                const response = await fetch('/api/vote/votes', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                        body: JSON.stringify({
+                        year: new Date().getFullYear(),
+                        month: new Date().getMonth() + 1, // JS months are 0-based
+                        prize_name: choice.value
+                    })
+                });
+                
+                if (response.ok) {
+                    showMessage('Vote submitted! You earned 2 entries.', 'success');
+                    hideVoting();
+                    loadUserStats();
+                } else {
+                    const error = await response.json();
+                    showMessage(error.detail || 'Failed to submit vote', 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+            }
+        });
+
+        // Social sharing functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent('http://24.144.67.150:9177/');
+            const text = encodeURIComponent('🎰 Check out LuckyClub WINS - Dell XPS 13 Laptop + $500 Cash raffle! Where dreams become reality! Join now: luckyclubwins.com');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+
+        function viewMyShares() {
+            alert('Share history coming soon!');
+        }
+
+        // Facebook share form submission
+        document.getElementById('facebook-share-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            alert("dog")
+            
+            const confirmed = document.getElementById('confirm-share').checked;
+            const screenshot = document.getElementById('share-screenshot').files[0];
+            
+            if (!confirmed) {
+                showMessage('Please confirm that you have shared on Facebook', 'error');
+                return;
+            }
+            
+            if (!screenshot) {
+                showMessage('Please upload a screenshot of your Facebook post', 'error');
+                return;
+            }
+            
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                // First get the current raffle ID
+                const raffleResponse = await fetch('/api/raffles/current', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (!raffleResponse.ok) {
+                    showMessage('Failed to get current raffle information', 'error');
+                    return;
+                }
+                
+                const raffle = await raffleResponse.json();
+                if (!raffle.id) {
+                    showMessage('No active raffle found', 'error');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('raffle_id', raffle.id);
+                formData.append('kind', 'facebook_share');
+                formData.append('file', screenshot);
+                
+                // Submit as proof upload
+                const response = await fetch('/api/proofs/', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    showMessage('Facebook share submitted! You will earn 1 entry once approved.', 'success');
+                    hideSharing();
+                    loadUserStats();
+                    // Reset form
+                    document.getElementById('facebook-share-form').reset();
+                } else {
+                    const error = await response.json();
+                    showMessage(error.detail || 'Failed to submit share', 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+            }
+        });
+
+        // Utility functions
+        function showMessage(message, type) {
+            const element = document.getElementById(type === 'error' ? 'error-message' : 'success-message');
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        function logout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_email');
+            window.location.href = '/';
+        }
+
+        function viewMyProofs() {
+            window.location.href = '/dashboard';
+        }
+
+        function viewPolls() {
+            window.location.href = '/dashboard';
+        }
+
+        function viewShares() {
+            alert('Share history coming soon!');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>

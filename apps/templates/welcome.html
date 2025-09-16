@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LuckyClub WINS - How It Works</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .welcome-header {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0f0f23;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,215,0,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .welcome-header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-header p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0f0f23;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ffd700;
+            border: 3px solid #ffd700;
+        }
+
+        .btn-outline:hover {
+            background: #ffd700;
+            color: #0f0f23;
+            transform: translateY(-3px);
+        }
+
+        .welcome-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .how-it-works {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0f0f23;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .entry-methods {
+            padding: 80px 0;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .method-icon {
+            font-size: 2.5rem;
+        }
+
+        .method-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+        }
+
+        .method-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .method-details {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .method-details h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .method-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .method-details li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .method-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .prizes-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .prize-showcase {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .prize-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #0f0f23;
+        }
+
+        .prize-title {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .prize-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .trust-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .trust-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .trust-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .trust-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 237, 78, 0.1) 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons-large {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+        }
+
+        .pricing-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            margin-bottom: 30px;
+        }
+
+        .pricing-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .currency {
+            font-size: 1.5rem;
+        }
+
+        .period {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-features {
+            margin-bottom: 30px;
+        }
+
+        .pricing-features h4 {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            margin-top: 30px;
+        }
+
+        .pricing-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="welcome-header">
+        <h1>🎰 Welcome to LuckyClub WINS</h1>
+        <p>Where dreams become reality through fair, transparent raffles</p>
+        <div class="cta-buttons">
+            <a href="/register" class="btn btn-primary">🚀 Get Started</a>
+            <a href="/login" class="btn btn-outline">🔑 Already a Member?</a>
+        </div>
+    </header>
+
+    <div class="welcome-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h2 class="hero-title">🏆 Win Amazing Prizes Every Month</h2>
+            <p class="hero-subtitle">
+                LuckyClub WINS is your gateway to incredible prizes through our monthly raffle system. 
+                Earn entries by participating in community activities, sharing your experiences, and uploading proof of your engagement.
+            </p>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2 class="section-title">🎯 How LuckyClub Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📝</div>
+                    <h3 class="step-title">Create Account</h3>
+                    <p class="step-description">
+                        Sign up with your email and start your journey to winning amazing prizes
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🎁</div>
+                    <h3 class="step-title">Earn Entries</h3>
+                    <p class="step-description">
+                        Participate in activities, share on social media, and upload proof to earn raffle entries
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🎲</div>
+                    <h3 class="step-title">Win Prizes</h3>
+                    <p class="step-description">
+                        More entries = better chances! Winners are drawn fairly at the end of each month
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Entry Methods -->
+        <section class="entry-methods">
+            <h2 class="section-title">💎 How to Earn Entries</h2>
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div class="method-icon">📸</div>
+                        <h3 class="method-title">Proof Uploads</h3>
+                    </div>
+                    <p class="method-description">
+                        Upload screenshots of your activities to earn 3-5 bonus entries
+                    </p>
+                    <div class="method-details">
+                        <h4>What to Upload:</h4>
+                        <ul>
+                            <li>Voting screenshots</li>
+                            <li>Social media shares</li>
+                            <li>Community participation</li>
+                            <li>Any engagement proof</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-header">
+                        <div class="method-icon">🗳️</div>
+                        <h3 class="method-title">Community Voting</h3>
+                    </div>
+                    <p class="method-description">
+                        Participate in community polls and surveys to earn 2 entries per vote
+                    </p>
+                    <div class="method-details">
+                        <h4>Voting Benefits:</h4>
+                        <ul>
+                            <li>Shape community decisions</li>
+                            <li>Earn guaranteed entries</li>
+                            <li>Stay engaged with updates</li>
+                            <li>Build community connections</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-header">
+                        <div class="method-icon">📢</div>
+                        <h3 class="method-title">Social Sharing</h3>
+                    </div>
+                    <p class="method-description">
+                        Share LuckyClub on Facebook to earn 1 entry per verified share
+                    </p>
+                    <div class="method-details">
+                        <h4>Sharing Requirements:</h4>
+                        <ul>
+                            <li>Post on Facebook</li>
+                            <li>Include LuckyClub mention</li>
+                            <li>Upload screenshot proof</li>
+                            <li>Wait for admin approval</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-header">
+                        <div class="method-icon">🎯</div>
+                        <h3 class="method-title">Base Entries</h3>
+                    </div>
+                    <p class="method-description">
+                        Every active member gets 15 base entries automatically each month
+                    </p>
+                    <div class="method-details">
+                        <h4>Base Entry Benefits:</h4>
+                        <ul>
+                            <li>Guaranteed participation</li>
+                            <li>No activity required</li>
+                            <li>Monthly automatic renewal</li>
+                            <li>Fair starting point for all</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prizes Section -->
+        <section class="prizes-section">
+            <h2 class="section-title">🏆 What You Can Win</h2>
+            <div class="prize-showcase">
+                <div class="prize-image">💻</div>
+                <h3 class="prize-title">Dell XPS 13 Laptop + $500 Cash</h3>
+                <p class="prize-description">
+                    Our headline prize combines cutting-edge technology with cash flexibility. 
+                    The Dell XPS 13 is a premium laptop perfect for work, gaming, or creative projects, 
+                    plus $500 cash to spend however you choose!
+                </p>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <h2 class="section-title">💰 Simple, Transparent Pricing</h2>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <div class="pricing-icon">💎</div>
+                    <h3 class="pricing-title">LuckyClub Premium</h3>
+                    <div class="pricing-amount">
+                        <span class="currency">$</span>
+                        <span class="amount">20</span>
+                        <span class="period">/month</span>
+                    </div>
+                </div>
+                <div class="pricing-features">
+                    <h4>What's Included:</h4>
+                    <ul>
+                        <li>✅ 15 base entries every month</li>
+                        <li>✅ Access to all monthly raffles</li>
+                        <li>✅ Unlimited proof uploads</li>
+                        <li>✅ Community voting participation</li>
+                        <li>✅ Social sharing opportunities</li>
+                        <li>✅ Real-time entry tracking</li>
+                        <li>✅ Admin support</li>
+                        <li>✅ Cancel anytime</li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="/register" class="btn btn-primary btn-large">🎰 Start Your $20/Month Plan</a>
+                    <p class="pricing-note">No hidden fees • Cancel anytime • 30-day satisfaction guarantee</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <h2 class="section-title">🔒 Why Trust LuckyClub?</h2>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">⚖️</div>
+                    <h3 class="trust-title">Fair & Transparent</h3>
+                    <p class="trust-description">
+                        All raffles use verified random selection. Every entry has an equal chance to win.
+                    </p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">🔐</div>
+                    <h3 class="trust-title">Secure & Private</h3>
+                    <p class="trust-description">
+                        Your personal information is protected. We never share your data with third parties.
+                    </p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">📊</div>
+                    <h3 class="trust-title">Real-Time Updates</h3>
+                    <p class="trust-description">
+                        Track your entries, view proof status, and monitor raffle progress in real-time.
+                    </p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">🎯</div>
+                    <h3 class="trust-title">Community Driven</h3>
+                    <p class="trust-description">
+                        Built by the community, for the community. Your feedback shapes our future.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <h2>🚀 Ready to Start Winning?</h2>
+            <p>
+                Join thousands of members who are already earning entries and winning amazing prizes. 
+                The next winner could be you!
+            </p>
+            <div class="cta-buttons-large">
+                <a href="/register" class="btn btn-primary btn-large">🎰 Join LuckyClub Now</a>
+                <a href="/earn-entries" class="btn btn-outline btn-large">💎 Learn How to Earn</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate step cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all step cards
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Observe all method cards
+            document.querySelectorAll('.method-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
