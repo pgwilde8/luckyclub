@@ -251,8 +251,9 @@ registerForm.addEventListener('submit', async function(e) {
         const data = await response.json();
 
         if (response.ok) {
-            showMessage('Registration successful! Redirecting to login...', 'success');
-            setTimeout(() => window.location.href = '/login', 2000);
+            showMessage('Registration successful! Please Check your email to activate account.', 'success');
+            registerForm.reset()
+            // setTimeout(() => window.location.href = '/login', 2000);
         } else {
 
            submitBtn.disabled = false;          // Disable the button

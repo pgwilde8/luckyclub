@@ -41,6 +41,40 @@
       box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
     }
 
+        .btn-outline-light {
+            border-color: #f8f9fa;
+            color: #f8f9fa;
+            background: transparent;
+        }
+
+        .btn-outline-light:hover {
+            background: #f8f9fa;
+            color: #0f0f23;
+        }
+
+        .btn-outline-danger {
+            border-color: #dc3545;
+            color: #dc3545;
+            background: transparent;
+        }
+
+        .btn-outline-danger:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+/* Or if you prefer the gold theme for logout */
+.btn-logout {
+    border-color: #dc3545;
+    color: #dc3545;
+    background: transparent;
+}
+
+.btn-logout:hover {
+    background: #dc3545;
+    color: white;
+}
+
     .section {
       background: rgba(255, 255, 255, 0.05);
       padding: 2rem;
@@ -271,7 +305,8 @@
           'approved': 'status-approved',
           'rejected': 'status-rejected'
         }[p.status];
-        const url = `/social-proof/${p.file_path}`;
+        // ✅ Fix for static prefix
+        const url = `/social-proof/${p.file_path.replace(/\\/g, "/").split('/').pop()}`;
         list.innerHTML += `
           <div class="proof-card">
             <strong>${p.kind}</strong><br/>
