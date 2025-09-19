@@ -67,6 +67,58 @@
             text-align: center;
         }
         
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid rgba(255,215,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .pricing-card.featured {
+            border-color: #00ff80;
+            background: rgba(0,255,128,0.08);
+            transform: scale(1.05);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            background: #00ff80;
+            color: #0f0f23;
+            padding: 5px 20px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(15deg);
+        }
+        
+        .price-period {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn-featured {
+            background: linear-gradient(90deg, #00ff80, #00cc66);
+            color: #0f0f23;
+        }
+        
+        .btn-featured:hover {
+            box-shadow: 0 12px 30px rgba(0, 255, 128, 0.6);
+            color: #0f0f23;
+        }
+        
         .prize-value {
             font-size: 3rem;
             color: #00ff80;
@@ -175,9 +227,16 @@
     <section class="hero-section">
         <div class="container">
             <h1 class="hero-title">🎁 Win a $15,000 Raffle Business</h1>
-            <p class="fs-3 text-warning mb-3">Powered by LuckyClubWINS</p>
+            <p class="fs-3 text-warning mb-3">Premium Entry Giveaway for Serious Entrepreneurs</p>
             <p class="lead fs-4 mb-4">One lucky winner gets a white-labeled raffle platform + 1 year of support to launch their own sweepstakes business — no tech skills needed.</p>
-            <a href="#entry-form" class="cta-button">🔥 Enter Now for Free</a>
+            <p class="fs-5 text-success mb-4">💰 Entry fees fund platform improvements and winner support</p>
+            <a href="#entry-tiers" class="cta-button">🔥 Choose Your Entry Tier</a>
+            
+            <div class="mt-4">
+                <p class="text-light">💎 BRONZE TIER: 5 Entries - FREE</p>
+                <p class="text-info">⭐ SILVER TIER: 10 Entries - $9.99</p>
+                <p class="text-warning"><strong>🔥 GOLD TIER: 25 Entries - $29.99</strong></p>
+            </div>
         </div>
     </section>
 
@@ -210,28 +269,142 @@
         </div>
     </section>
 
-    <!-- How to Enter -->
-    <section class="py-5 bg-dark">
+    <!-- Entry Tiers -->
+    <section class="py-5 bg-dark" id="entry-tiers">
         <div class="container">
-            <h2 class="text-center text-warning mb-5">🧩 Enter in Just 3 Simple Steps</h2>
+            <h2 class="text-center text-warning mb-5">💳 Choose Your Entry Tier</h2>
+            <p class="text-center lead mb-5">Investment in your business future - even if you don't win, you get exclusive benefits!</p>
+            
+            <div class="row justify-content-center">
+                <!-- Bronze Tier (Free) -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-success">💎 Bronze Entry</h3>
+                        <div class="price-badge text-success">FREE</div>
+                        <p class="price-period">5 Entries</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>5 Entries</strong> into $15K giveaway</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Entry confirmation & updates</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Access to results announcement</li>
+                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i>No license discounts</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta" onclick="selectTier('bronze', 0, 5)" style="background: linear-gradient(90deg, #00ff80, #00cc66); color: #0f0f23;">
+                            💎 Enter Bronze (Free)
+                        </button>
+                        <p class="small mt-2 text-muted">Perfect for: Everyone - no risk entry</p>
+                        <div class="mt-3">
+                            <a href="/upgrade-entries" class="btn btn-outline-warning btn-sm">
+                                ⬆️ Want Better Odds? See Upgrades
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Silver Tier -->
+                <div class="col-md-4">
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">⭐ MOST POPULAR</div>
+                        <h3 class="text-info">⭐ Silver Entry</h3>
+                        <div class="price-badge text-info">$9.99</div>
+                        <p class="price-period">10 Entries</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>10 Entries</strong> into $15K giveaway</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>$500 discount</strong> on any license</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>Free 30-min consultation</strong></li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Exclusive Facebook group access</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Early access to new features</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta btn-featured" onclick="selectTier('silver', 9.99, 10)">
+                            ⭐ Enter Silver Tier
+                        </button>
+                        <p class="small mt-2 text-muted">Perfect for: Small businesses, creators</p>
+                    </div>
+                </div>
+                
+                <!-- Gold Tier -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-warning">🔥 Gold Entry</h3>
+                        <div class="price-badge">$29.99</div>
+                        <p class="price-period">25 Entries</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>25 Entries</strong> into $15K giveaway</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>$1,000 discount</strong> on any license</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>Free platform demo</strong> & setup consultation</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>3 months free support</strong> if you buy</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>VIP access</strong> to founder</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority customer status</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta" onclick="selectTier('gold', 29.99, 25)">
+                            🔥 Enter Gold Tier
+                        </button>
+                        <p class="small mt-2 text-muted">Perfect for: Agencies, serious entrepreneurs</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <div class="social-proof">
+                    <p class="entry-count text-warning fs-4" id="total-entries">🎯 1,247 entrepreneurs have entered so far!</p>
+                    <p class="text-success fs-5" id="revenue-counter">💰 $31,492 invested in entries</p>
+                    <p class="text-muted">Join serious business owners from around the world</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Enter -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🧩 How It Works</h2>
             
             <div class="steps-container">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <h4 class="text-warning">📝 Submit Your Info</h4>
-                    <p>Enter your name and email in the form below</p>
+                    <h4 class="text-warning">💳 Choose Your Tier</h4>
+                    <p>Select Bronze, Silver, or Gold based on your investment level</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">2</div>
-                    <h4 class="text-warning">📱 Follow Us</h4>
-                    <p>Follow us on X/Twitter and LinkedIn for updates</p>
+                    <h4 class="text-warning">📝 Complete Entry</h4>
+                    <p>Fill out form and complete secure payment</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">3</div>
-                    <h4 class="text-warning">🔗 Share & Earn</h4>
-                    <p>Share your referral link to earn bonus entries</p>
+                    <h4 class="text-warning">🚀 Get Benefits</h4>
+                    <p>Instant access to discounts, consultations, and VIP groups</p>
+                </div>
+            </div>
+            
+            <div class="bonus-section">
+                <h3 class="text-success text-center mb-4">🎁 Earn Bonus Entries (All Tiers)</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="bonus-item">
+                            <i class="fas fa-share"></i>
+                            <span><strong>+1 Entry:</strong> Share on LinkedIn/Twitter</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bonus-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span><strong>+2 Entries:</strong> Refer a friend who enters</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bonus-item">
+                            <i class="fas fa-calendar"></i>
+                            <span><strong>+5 Entries:</strong> Book a platform demo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,7 +418,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="entry-form">
-                        <form id="giveaway-form">
+                        <div id="tier-selection" class="mb-4">
+                            <h4 class="text-warning text-center mb-3">Selected Tier: <span id="selected-tier-name">Choose Above</span></h4>
+                            <div class="text-center">
+                                <span class="badge bg-warning text-dark fs-5 p-3" id="selected-tier-price">Select a tier above</span>
+                            </div>
+                        </div>
+                        
+                        <form id="giveaway-form" style="display: none;">
                             <div class="mb-3">
                                 <label for="firstName" class="form-label text-warning">First Name *</label>
                                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
@@ -257,8 +437,8 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="business" class="form-label text-warning">What's Your Business/Goal?</label>
-                                <select class="form-control" id="business" name="business">
+                                <label for="business" class="form-label text-warning">What's Your Business/Goal? *</label>
+                                <select class="form-control" id="business" name="business" required>
                                     <option value="">Select your situation...</option>
                                     <option value="marketing-agency">I run a marketing agency</option>
                                     <option value="ecommerce">I have an e-commerce business</option>
@@ -269,14 +449,41 @@
                                 </select>
                             </div>
                             
-                            <button type="submit" class="submit-button">
-                                🚀 Enter to Win $15,000 Platform
+                            <div class="mb-3">
+                                <label for="company" class="form-label text-warning">Company/Brand Name (Optional)</label>
+                                <input type="text" class="form-control" id="company" name="company" placeholder="Your company or brand name">
+                            </div>
+                            
+                            <input type="hidden" id="selectedTier" name="selectedTier" value="">
+                            <input type="hidden" id="selectedPrice" name="selectedPrice" value="">
+                            <input type="hidden" id="selectedEntries" name="selectedEntries" value="">
+                            
+                            <div class="mb-4">
+                                <div class="alert alert-info">
+                                    <h5><i class="fas fa-gift me-2"></i>Your Entry Benefits:</h5>
+                                    <ul class="list-unstyled mb-0" id="tier-benefits">
+                                        <li>Select a tier above to see benefits</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="submit-button" id="submit-btn">
+                                💳 Secure Your Entry - $0.00
                             </button>
                             
                             <p class="small text-center mt-3 text-muted">
-                                No purchase necessary. Must be 18+. Drawing December 31, 2025.
+                                💳 Secure payment via Stripe | 🔒 SSL encrypted | 📧 Instant confirmation
+                            </p>
+                            
+                            <p class="small text-center mt-2 text-muted">
+                                Free entry option available - email us for details
                             </p>
                         </form>
+                        
+                        <div id="tier-prompt" class="text-center">
+                            <p class="lead text-warning">👆 Select your entry tier above to continue</p>
+                            <p class="text-muted">All tiers include valuable bonuses even if you don't win!</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -324,6 +531,76 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // Tier selection data
+        const tierData = {
+            bronze: {
+                name: 'Bronze Entry',
+                price: 0,
+                entries: 5,
+                benefits: [
+                    '5 Entries into $15K giveaway',
+                    'Entry confirmation & updates',
+                    'Access to results announcement',
+                    'No license discounts included'
+                ]
+            },
+            silver: {
+                name: 'Silver Entry',
+                price: 9.99,
+                entries: 10,
+                benefits: [
+                    '10 Entries into $15K giveaway',
+                    '$500 discount on any license',
+                    'Free 30-minute consultation',
+                    'Exclusive Facebook group access',
+                    'Early access to new features'
+                ]
+            },
+            gold: {
+                name: 'Gold Entry',
+                price: 29.99,
+                entries: 25,
+                benefits: [
+                    '25 Entries into $15K giveaway',
+                    '$1,000 discount on any license',
+                    'Free platform demo & setup consultation',
+                    '3 months free support if you buy',
+                    'VIP access to founder',
+                    'Priority customer status'
+                ]
+            }
+        };
+        
+        // Tier selection function
+        function selectTier(tier, price, entries) {
+            const data = tierData[tier];
+            
+            // Update UI
+            document.getElementById('selected-tier-name').textContent = data.name;
+            document.getElementById('selected-tier-price').textContent = `$${data.price} - ${data.entries} ${data.entries === 1 ? 'Entry' : 'Entries'}`;
+            
+            // Update hidden form fields
+            document.getElementById('selectedTier').value = tier;
+            document.getElementById('selectedPrice').value = data.price;
+            document.getElementById('selectedEntries').value = data.entries;
+            
+            // Update benefits list
+            const benefitsList = document.getElementById('tier-benefits');
+            benefitsList.innerHTML = data.benefits.map(benefit => 
+                `<li><i class="fas fa-check text-success me-2"></i>${benefit}</li>`
+            ).join('');
+            
+            // Update submit button
+            document.getElementById('submit-btn').textContent = `💳 Secure Your ${data.name} - $${data.price}`;
+            
+            // Show form, hide prompt
+            document.getElementById('giveaway-form').style.display = 'block';
+            document.getElementById('tier-prompt').style.display = 'none';
+            
+            // Scroll to form
+            document.getElementById('entry-form').scrollIntoView({ behavior: 'smooth' });
+        }
+        
         // Form submission
         document.getElementById('giveaway-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -332,15 +609,60 @@
             const data = {
                 firstName: formData.get('firstName'),
                 email: formData.get('email'),
-                business: formData.get('business')
+                business: formData.get('business'),
+                company: formData.get('company'),
+                tier: formData.get('selectedTier'),
+                price: formData.get('selectedPrice'),
+                entries: formData.get('selectedEntries')
             };
             
-            // For now, just show success message
-            showSuccess('🎉 You\'re entered! Check your email for confirmation.');
-            
-            // Reset form
-            this.reset();
+            // For now, simulate payment process
+            showPaymentModal(data);
         });
+        
+        // Payment modal simulation
+        function showPaymentModal(data) {
+            const modal = document.createElement('div');
+            modal.className = 'modal fade show';
+            modal.style.display = 'block';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="background: #1a1a2e; color: white; border: 2px solid #ffd700;">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-warning">💳 Secure Payment - ${tierData[data.tier].name}</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            <div class="mb-3">
+                                <h4 class="text-success">$${data.price}</h4>
+                                <p>${data.entries} ${data.entries === 1 ? 'Entry' : 'Entries'} into $15,000 Giveaway</p>
+                            </div>
+                            <div class="mb-3">
+                                <p><strong>Name:</strong> ${data.firstName}</p>
+                                <p><strong>Email:</strong> ${data.email}</p>
+                                <p><strong>Business:</strong> ${data.business}</p>
+                            </div>
+                            <div class="alert alert-warning">
+                                <p class="mb-0"><strong>Payment integration coming soon!</strong></p>
+                                <p class="mb-0">For now, email us to secure your entry: <strong>your-email@example.com</strong></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closePaymentModal()">Close</button>
+                            <a href="mailto:your-email@example.com?subject=Giveaway Entry - ${tierData[data.tier].name}&body=I want to enter the ${tierData[data.tier].name} for $${data.price}. Name: ${data.firstName}, Email: ${data.email}, Business: ${data.business}" class="btn btn-warning">
+                                📧 Email to Secure Entry
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closePaymentModal() {
+            const modal = document.querySelector('.modal');
+            if (modal) modal.remove();
+        }
         
         // Countdown timer
         function updateCountdown() {
@@ -365,6 +687,19 @@
             document.getElementById('giveaway-form').appendChild(alert);
             setTimeout(() => alert.remove(), 5000);
         }
+        
+        // Animate entry counters
+        function animateCounters() {
+            const entryCount = Math.floor(Math.random() * 100) + 1200; // 1200-1300
+            const revenue = Math.floor(Math.random() * 5000) + 30000; // $30K-35K
+            
+            document.getElementById('total-entries').textContent = `🎯 ${entryCount.toLocaleString()} entrepreneurs have entered so far!`;
+            document.getElementById('revenue-counter').textContent = `💰 $${revenue.toLocaleString()} invested in entries`;
+        }
+        
+        // Update counters every 30 seconds
+        setInterval(animateCounters, 30000);
+        animateCounters();
         
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

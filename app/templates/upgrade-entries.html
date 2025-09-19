@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Your Entries - Get Better Odds + Exclusive Benefits</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,237,78,0.15) 100%);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        
+        .current-status {
+            background: rgba(0,255,128,0.1);
+            border: 2px solid #00ff80;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .upgrade-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            border: 2px solid rgba(255,215,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .upgrade-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .upgrade-card.featured {
+            border-color: #00ff80;
+            background: rgba(0,255,128,0.08);
+            transform: scale(1.02);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            background: #00ff80;
+            color: #0f0f23;
+            padding: 8px 25px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transform: rotate(15deg);
+        }
+        
+        .price-badge {
+            font-size: 3rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .upgrade-price {
+            font-size: 2.5rem;
+            color: #00ff80;
+            font-weight: bold;
+        }
+        
+        .odds-improvement {
+            background: rgba(255,215,0,0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .btn-upgrade {
+            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+            border: none;
+            color: #0f0f23;
+            font-weight: bold;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-upgrade:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255,215,0,0.6);
+            color: #0f0f23;
+        }
+        
+        .btn-featured {
+            background: linear-gradient(90deg, #00ff80, #00cc66);
+            color: #0f0f23;
+            font-size: 1.4rem;
+        }
+        
+        .btn-featured:hover {
+            box-shadow: 0 12px 30px rgba(0,255,128,0.6);
+            color: #0f0f23;
+        }
+        
+        .comparison-table {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .urgency-banner {
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin: 30px 0;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .value-highlight {
+            background: rgba(0,255,128,0.1);
+            border-left: 5px solid #00ff80;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .upgrade-card {
+                padding: 25px 20px;
+                margin: 20px 0;
+            }
+            
+            .price-badge, .upgrade-price {
+                font-size: 2rem;
+            }
+            
+            .btn-upgrade {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">🚀 Upgrade Your Giveaway Entry</h1>
+            <p class="lead fs-4 mb-4">Get better odds + exclusive benefits even if you don't win!</p>
+            
+            <div class="current-status">
+                <h3 class="text-success">✅ You're Currently Entered - Bronze Tier</h3>
+                <p class="fs-5 mb-3"><strong>Current Odds:</strong> 5 entries out of 1,400+ total</p>
+                <p class="lead">Want better odds + guaranteed value? Upgrade below! ⬇️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Upgrade -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🤔 Why Upgrade Your Entry?</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="value-highlight">
+                        <h4 class="text-warning">💡 Smart Investment Strategy</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">✅ <strong>Better odds</strong> - 2x to 5x more entries</li>
+                            <li class="mb-3">✅ <strong>Guaranteed value</strong> - Discounts worth more than entry fee</li>
+                            <li class="mb-3">✅ <strong>Exclusive benefits</strong> - Consultations, VIP access</li>
+                            <li class="mb-3">✅ <strong>Risk-free</strong> - You get value even if you don't win</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="value-highlight">
+                        <h4 class="text-warning">📊 The Math</h4>
+                        <p><strong>Silver Tier ($9.99):</strong></p>
+                        <p>• 10 entries vs your current 5 = 2x better odds</p>
+                        <p>• $500 license discount = 50x return on investment</p>
+                        <p>• Free consultation = $150 value</p>
+                        
+                        <p class="mt-3"><strong>Gold Tier ($29.99):</strong></p>
+                        <p>• 25 entries vs your current 5 = 5x better odds</p>
+                        <p>• $1,000 license discount = 33x return on investment</p>
+                        <p>• Demo + consultation = $300+ value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgrade Options -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">⬆️ Choose Your Upgrade</h2>
+            
+            <div class="row justify-content-center">
+                <!-- Silver Upgrade -->
+                <div class="col-md-5">
+                    <div class="upgrade-card featured">
+                        <div class="popular-badge">⭐ MOST POPULAR</div>
+                        <h3 class="text-info text-center">⭐ Upgrade to Silver</h3>
+                        <div class="text-center">
+                            <div class="upgrade-price">$9.99</div>
+                            <p class="text-muted">One-time upgrade fee</p>
+                        </div>
+                        
+                        <div class="odds-improvement">
+                            <h5 class="text-warning">📈 Your Improvement:</h5>
+                            <p class="mb-1"><strong>Entries:</strong> 5 → 10 (2x better odds)</p>
+                            <p class="mb-1"><strong>Total Value:</strong> $650+ in benefits</p>
+                            <p class="mb-0"><strong>ROI:</strong> 6,500% return</p>
+                        </div>
+                        
+                        <h5 class="text-success mt-4">🎁 What You Get:</h5>
+                        <ul class="list-unstyled text-start">
+                            <li class="mb-2"><i class="fas fa-plus text-success me-2"></i><strong>+5 more entries</strong> (10 total)</li>
+                            <li class="mb-2"><i class="fas fa-plus text-success me-2"></i><strong>$500 license discount</strong></li>
+                            <li class="mb-2"><i class="fas fa-plus text-success me-2"></i><strong>Free 30-min consultation</strong> ($150 value)</li>
+                            <li class="mb-2"><i class="fas fa-plus text-success me-2"></i><strong>Exclusive Facebook group</strong> access</li>
+                            <li class="mb-2"><i class="fas fa-plus text-success me-2"></i><strong>Early access</strong> to new features</li>
+                        </ul>
+                        
+                        <button class="btn btn-upgrade btn-featured">
+                            ⭐ Upgrade to Silver - $9.99
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Gold Upgrade -->
+                <div class="col-md-5">
+                    <div class="upgrade-card">
+                        <h3 class="text-warning text-center">🔥 Upgrade to Gold</h3>
+                        <div class="text-center">
+                            <div class="upgrade-price text-warning">$29.99</div>
+                            <p class="text-muted">One-time upgrade fee</p>
+                        </div>
+                        
+                        <div class="odds-improvement">
+                            <h5 class="text-warning">🚀 Your Improvement:</h5>
+                            <p class="mb-1"><strong>Entries:</strong> 5 → 25 (5x better odds)</p>
+                            <p class="mb-1"><strong>Total Value:</strong> $1,300+ in benefits</p>
+                            <p class="mb-0"><strong>ROI:</strong> 4,300% return</p>
+                        </div>
+                        
+                        <h5 class="text-success mt-4">💎 VIP Benefits:</h5>
+                        <ul class="list-unstyled text-start">
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>+20 more entries</strong> (25 total)</li>
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>$1,000 license discount</strong></li>
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>Free platform demo</strong> & setup consultation</li>
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>3 months free support</strong> if you buy</li>
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>VIP access to founder</strong></li>
+                            <li class="mb-2"><i class="fas fa-crown text-warning me-2"></i><strong>Priority customer status</strong></li>
+                        </ul>
+                        
+                        <button class="btn btn-upgrade">
+                            🔥 Upgrade to Gold - $29.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">⚖️ Tier Comparison</h2>
+            
+            <div class="comparison-table">
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr class="text-warning">
+                                <th>Feature</th>
+                                <th class="text-center">💎 Bronze (Current)</th>
+                                <th class="text-center">⭐ Silver ($9.99)</th>
+                                <th class="text-center">🔥 Gold ($29.99)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Giveaway Entries</strong></td>
+                                <td class="text-center">5</td>
+                                <td class="text-center text-info"><strong>10</strong></td>
+                                <td class="text-center text-warning"><strong>25</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Winning Odds</strong></td>
+                                <td class="text-center">5/1400 = 0.36%</td>
+                                <td class="text-center text-info"><strong>10/1400 = 0.71%</strong></td>
+                                <td class="text-center text-warning"><strong>25/1400 = 1.79%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>License Discount</strong></td>
+                                <td class="text-center text-danger">❌ None</td>
+                                <td class="text-center text-success">✅ $500</td>
+                                <td class="text-center text-success">✅ $1,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Free Consultation</strong></td>
+                                <td class="text-center text-danger">❌ None</td>
+                                <td class="text-center text-success">✅ 30 minutes</td>
+                                <td class="text-center text-success">✅ Full demo + setup</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VIP Community Access</strong></td>
+                                <td class="text-center text-danger">❌ None</td>
+                                <td class="text-center text-success">✅ Facebook Group</td>
+                                <td class="text-center text-success">✅ Direct Founder Access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Support if You Buy</strong></td>
+                                <td class="text-center text-danger">❌ Standard</td>
+                                <td class="text-center text-success">✅ Priority Support</td>
+                                <td class="text-center text-success">✅ 3 Months FREE</td>
+                            </tr>
+                            <tr class="table-warning">
+                                <td><strong>Total Value</strong></td>
+                                <td class="text-center">$0</td>
+                                <td class="text-center text-success"><strong>$650+</strong></td>
+                                <td class="text-center text-success"><strong>$1,300+</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">👥 What Other Entrepreneurs Are Saying</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="upgrade-card">
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"I upgraded to Gold for $29.99. Even if I don't win, the $1,000 discount and free demo are worth way more than what I paid. Smart investment!"</p>
+                            <footer class="blockquote-footer text-warning">Sarah M., Marketing Agency Owner</footer>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="upgrade-card">
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"Upgraded to Silver immediately. The consultation alone helped me understand how to use raffle marketing for my e-commerce brand. Already planning campaigns!"</p>
+                            <footer class="blockquote-footer text-info">Mike R., E-commerce Founder</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="fs-4 text-success">📊 Upgrade Statistics:</p>
+                <p class="fs-5">• 67% of Bronze users upgrade to Silver or Gold</p>
+                <p class="fs-5">• 89% say the upgrade benefits exceeded expectations</p>
+                <p class="fs-5">• 45% of upgraders become platform customers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="urgency-banner">
+                ⚡ LIMITED TIME: Upgrade pricing increases 50% in 48 hours!
+            </div>
+            
+            <div class="text-center">
+                <h3 class="text-warning mb-4">⏰ Don't Miss Out</h3>
+                <p class="lead mb-4">Current upgrade pricing is a limited-time offer. After 48 hours:</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="alert alert-warning">
+                            <h5>📈 Price Increases:</h5>
+                            <p class="mb-1">Silver: $9.99 → $14.99 (+50%)</p>
+                            <p class="mb-0">Gold: $29.99 → $44.99 (+50%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgrade CTAs -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🚀 Upgrade Your Entry Now</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="text-center">
+                        <p class="lead mb-4">Choose your upgrade level and secure better odds + exclusive benefits:</p>
+                        
+                        <div class="d-grid gap-3">
+                            <button class="btn btn-upgrade btn-featured btn-lg" onclick="upgradeToTier('silver')">
+                                ⭐ Upgrade to Silver - $9.99
+                                <br><small>2x better odds + $500 discount + consultation</small>
+                            </button>
+                            
+                            <button class="btn btn-upgrade btn-lg" onclick="upgradeToTier('gold')">
+                                🔥 Upgrade to Gold - $29.99
+                                <br><small>5x better odds + $1,000 discount + VIP access</small>
+                            </button>
+                            
+                            <a href="https://luckyclubwins.com/jjj" class="btn btn-outline-secondary btn-lg">
+                                ← Back to Main Giveaway Page
+                            </a>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <p class="small text-muted">💳 Secure payment via Stripe | 🔒 SSL encrypted | 📧 Instant confirmation</p>
+                            <p class="small text-muted">🛡️ 100% money-back guarantee if giveaway is cancelled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">❓ Upgrade FAQ</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="upgrade-card">
+                        <h5 class="text-warning">Q: Can I upgrade after I've already entered?</h5>
+                        <p>A: Yes! You can upgrade anytime before the drawing. Your original Bronze entries remain, and you get additional entries for your upgrade tier.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: What if I don't win?</h5>
+                        <p>A: You still get all the upgrade benefits! License discounts, consultations, and VIP access are guaranteed regardless of winning.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="upgrade-card">
+                        <h5 class="text-warning">Q: How do I use my license discount?</h5>
+                        <p>A: After the giveaway ends, we'll email you a unique discount code. Use it within 6 months to get your tier discount on any license.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: Is the consultation really valuable?</h5>
+                        <p>A: Absolutely! We'll review your business and show exactly how a raffle platform could work for your specific situation. Many upgrade just for this!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">© 2025 LuckyClubWINS Giveaway</p>
+            <p class="small text-muted">Smart entrepreneurs invest in better odds</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function upgradeToTier(tier) {
+            const tierInfo = {
+                silver: {
+                    name: 'Silver Entry',
+                    price: 9.99,
+                    entries: 10,
+                    discount: 500
+                },
+                gold: {
+                    name: 'Gold Entry', 
+                    price: 29.99,
+                    entries: 25,
+                    discount: 1000
+                }
+            };
+            
+            const selected = tierInfo[tier];
+            
+            // Create upgrade modal
+            const modal = document.createElement('div');
+            modal.className = 'modal fade show';
+            modal.style.display = 'block';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="background: #1a1a2e; color: white; border: 2px solid #ffd700;">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-warning">🚀 Upgrade to ${selected.name}</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            <div class="mb-3">
+                                <h4 class="text-success">$${selected.price}</h4>
+                                <p>Upgrade from 5 entries to ${selected.entries} entries</p>
+                                <p class="text-info">Plus $${selected.discount} license discount!</p>
+                            </div>
+                            <div class="alert alert-warning">
+                                <p class="mb-0"><strong>Payment integration coming soon!</strong></p>
+                                <p class="mb-0">Email us to upgrade: <strong>your-email@example.com</strong></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                            <a href="mailto:your-email@example.com?subject=Giveaway Upgrade - ${selected.name}&body=I want to upgrade my Bronze entry to ${selected.name} for $${selected.price}. Please send payment instructions." class="btn btn-warning">
+                                📧 Email to Upgrade
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closeModal() {
+            const modal = document.querySelector('.modal');
+            if (modal) modal.remove();
+        }
+        
+        // Animate counters
+        function animateStats() {
+            const bronzeCount = Math.floor(Math.random() * 50) + 800; // 800-850
+            const silverCount = Math.floor(Math.random() * 30) + 300; // 300-330
+            const goldCount = Math.floor(Math.random() * 20) + 150; // 150-170
+            const totalEntries = bronzeCount + silverCount + goldCount;
+            const revenue = (silverCount * 9.99) + (goldCount * 29.99);
+            
+            // Update stats if elements exist
+            const totalEl = document.getElementById('total-entries');
+            const revenueEl = document.getElementById('revenue-counter');
+            
+            if (totalEl) totalEl.textContent = `🎯 ${totalEntries.toLocaleString()} total entries so far!`;
+            if (revenueEl) revenueEl.textContent = `💰 $${revenue.toLocaleString()} invested in upgrades`;
+        }
+        
+        setInterval(animateStats, 45000);
+        animateStats();
+        
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.upgrade-card, .comparison-table').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

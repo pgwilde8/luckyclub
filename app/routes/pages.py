@@ -85,3 +85,8 @@ async def giveaway_page(request: Request):
     """Giveaway landing page - Win a $15,000 raffle business"""
     return templates.TemplateResponse("jjj.html", {"request": request})
 
+@router.get("/upgrade-entries")
+async def upgrade_entries_page(request: Request):
+    """Upgrade giveaway entries page - Upsell Bronze users to Silver/Gold"""
+    return templates.TemplateResponse("upgrade-entries.html", {"request": request})
+

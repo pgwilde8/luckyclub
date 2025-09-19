@@ -13,7 +13,7 @@ cd /opt/webwise/luckyclub
 source .venv/bin/activate
 
 git add .
-git commit -m "pgw2"
+git commit -m "pgw3"
 git push
 
 uvicorn app.main:app --host 0.0.0.0 --port 9177 --reload
