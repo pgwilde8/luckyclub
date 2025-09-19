@@ -70,3 +70,18 @@ async def pricing_page(request: Request):
     """Serve the forget password page"""
     return templates.TemplateResponse("forget.html", {"request": request})
 
+@router.get("/sales-test209")
+async def sales_page(request: Request):
+    """Professional sales page for the platform"""
+    return templates.TemplateResponse("sales-test209.html", {"request": request})
+
+@router.get("/sales-test210")
+async def customer_sales_page(request: Request):
+    """Customer-facing sales page for licensing services"""
+    return templates.TemplateResponse("sales-test210.html", {"request": request})
+
+@router.get("/jjj")
+async def giveaway_page(request: Request):
+    """Giveaway landing page - Win a $15,000 raffle business"""
+    return templates.TemplateResponse("jjj.html", {"request": request})
+

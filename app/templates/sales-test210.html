@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Your Branded Raffle Platform - LuckyClub WINS Licensing</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,237,78,0.15) 100%);
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #00ff80;
+            margin-bottom: 20px;
+        }
+        
+        .problem-section {
+            background: rgba(255,0,0,0.05);
+            border-left: 5px solid #ff4444;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .solution-section {
+            background: rgba(0,255,128,0.05);
+            border-left: 5px solid #00ff80;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            border: 2px solid rgba(255,215,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .pricing-card.featured {
+            border-color: #00ff80;
+            background: rgba(0,255,128,0.08);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: "🔥 RECOMMENDED";
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #00ff80;
+            color: #0f0f23;
+            padding: 8px 45px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .price-badge {
+            font-size: 3.5rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        .btn-cta {
+            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+            border: none;
+            color: #0f0f23;
+            font-weight: bold;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+            color: #0f0f23;
+        }
+        
+        .btn-featured {
+            background: linear-gradient(90deg, #00ff80, #00cc66);
+            color: #0f0f23;
+            font-size: 1.4rem;
+            padding: 20px 40px;
+        }
+        
+        .btn-featured:hover {
+            box-shadow: 0 12px 30px rgba(0, 255, 128, 0.6);
+            color: #0f0f23;
+        }
+        
+        .benefit-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,215,0,0.2);
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 5px solid #ffd700;
+            font-style: italic;
+        }
+        
+        .urgency-banner {
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin: 30px 0;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .guarantee-badge {
+            background: rgba(0,255,128,0.1);
+            border: 2px solid #00ff80;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .pricing-card {
+                margin: 15px 0;
+                padding: 25px 20px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+                margin: 20px 0;
+            }
+            
+            .price-badge {
+                font-size: 2.5rem;
+            }
+            
+            .btn-cta {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .benefit-card {
+                padding: 20px 15px;
+            }
+            
+            .benefit-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">🚀 Launch Your Own Raffle Empire</h1>
+            <p class="hero-subtitle">Professional White-Label Raffle Platform</p>
+            <p class="lead fs-4 mb-4">Skip months of development. Launch your branded raffle business in 24 hours.</p>
+            
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    <div class="urgency-banner">
+                        ⚡ LIMITED TIME: Only 5 licensing spots available this quarter
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="problem-section">
+                        <h3 class="text-danger">😤 The Problem You're Facing</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">❌ <strong>Custom development costs $25K-50K</strong></li>
+                            <li class="mb-3">❌ <strong>6-12 months development time</strong></li>
+                            <li class="mb-3">❌ <strong>Technical risks & unknown bugs</strong></li>
+                            <li class="mb-3">❌ <strong>Ongoing maintenance headaches</strong></li>
+                            <li class="mb-3">❌ <strong>Missing features & poor UX</strong></li>
+                            <li class="mb-3">❌ <strong>Competitors launching while you develop</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="solution-section">
+                        <h3 class="text-success">✅ Our Solution</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">✅ <strong>Proven platform - already working live</strong></li>
+                            <li class="mb-3">✅ <strong>Launch in 24 hours, not 6 months</strong></li>
+                            <li class="mb-3">✅ <strong>Professional UI/UX that converts</strong></li>
+                            <li class="mb-3">✅ <strong>White-label under YOUR brand</strong></li>
+                            <li class="mb-3">✅ <strong>Ongoing support & updates included</strong></li>
+                            <li class="mb-3">✅ <strong>Start generating revenue immediately</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">💼 Choose Your License Package</h2>
+            
+            <div class="row">
+                <!-- Starter Package -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-warning">🏷️ Starter License</h3>
+                        <div class="price-badge">$1,999</div>
+                        <p class="price-period">one-time + hosting</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Complete platform source code</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Your custom branding & colors</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Self-hosted on your server</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Setup & deployment guide</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 3 months email support</li>
+                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i> No ongoing updates</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta">🚀 Get Starter License</button>
+                        <p class="small mt-2 text-muted">Perfect for: Small businesses, influencers</p>
+                    </div>
+                </div>
+                
+                <!-- Professional Package -->
+                <div class="col-md-4">
+                    <div class="pricing-card featured">
+                        <h3 style="color: #00ff80;">☁️ Professional Hosted</h3>
+                        <div class="price-badge" style="color: #00ff80;">$299</div>
+                        <p class="price-period">per month</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Fully hosted & managed by us</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Your custom domain & branding</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Unlimited users & raffles</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> SSL, backups, security included</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 24/7 support & maintenance</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Regular feature updates</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Analytics & reporting dashboard</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta btn-featured">🔥 Start Professional Plan</button>
+                        <p class="small mt-2 text-muted">Perfect for: Marketing agencies, e-commerce brands</p>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Package -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-warning">🏢 Enterprise API</h3>
+                        <div class="price-badge">$4,999</div>
+                        <p class="price-period">per license</p>
+                        
+                        <ul class="list-unstyled text-start mt-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Complete API access & documentation</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Multi-tenant architecture</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Custom integrations included</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> White-label reseller rights</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 1 year premium support</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Custom feature development</li>
+                        </ul>
+                        
+                        <button class="btn btn-cta">💼 Get Enterprise License</button>
+                        <p class="small mt-2 text-muted">Perfect for: Large agencies, gaming companies, developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🏆 Why Choose LuckyClub WINS Licensing?</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                        <h4 class="text-warning">Launch in 24 Hours</h4>
+                        <p>Stop waiting months for development. Our platform is battle-tested and ready to deploy under your brand immediately.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4 class="text-warning">Zero Technical Risk</h4>
+                        <p>No bugs, no unknown issues. Our platform is live and processing real users and payments successfully.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4 class="text-warning">Proven Revenue Model</h4>
+                        <p>Multiple income streams: entry fees, memberships, sponsorships. Start monetizing from day one.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h4 class="text-warning">Complete Branding Control</h4>
+                        <p>Your logo, colors, domain, messaging. Customers see YOUR brand, not ours. Build your own equity.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                        <h4 class="text-warning">Viral Growth Engine</h4>
+                        <p>Built-in social sharing, referral mechanics, and community features that grow your user base automatically.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                        <h4 class="text-warning">Expert Support Team</h4>
+                        <p>Direct access to the original developers. We ensure your success because your success is our success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🌐 See It In Action</h2>
+            
+            <div class="text-center mb-4">
+                <p class="lead">Don't take our word for it - test the platform yourself:</p>
+                <a href="https://luckyclubwins.com" target="_blank" class="btn btn-cta" style="width: auto; padding: 15px 30px;">
+                    🎯 View Live Demo Platform
+                </a>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h4 class="text-warning">🎮 Test These Features:</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">📸 Screenshot upload system</li>
+                        <li class="mb-2">🗳️ Community voting & polls</li>
+                        <li class="mb-2">📱 Mobile-responsive design</li>
+                        <li class="mb-2">👤 User registration & verification</li>
+                        <li class="mb-2">📊 Dashboard & analytics</li>
+                        <li class="mb-2">🔐 Secure authentication</li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6">
+                    <h4 class="text-warning">💡 Imagine This as YOUR Brand:</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">🎨 Your logo & colors everywhere</li>
+                        <li class="mb-2">🌐 Your domain (yourcompany.com)</li>
+                        <li class="mb-2">📧 Your branded emails</li>
+                        <li class="mb-2">💰 Your revenue streams</li>
+                        <li class="mb-2">👥 Your customer base</li>
+                        <li class="mb-2">📈 Your business growth</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🎯 Perfect For Your Business</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <h5 class="text-warning">🏢 Marketing Agency Owner Says:</h5>
+                        <p>"We charge clients $500-2000 per raffle campaign. With the Professional plan at $299/month, we're generating 500-600% profit margins. Best investment we've made."</p>
+                        <small class="text-muted">- Digital Marketing Agency</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <h5 class="text-warning">🛍️ E-commerce Brand Owner Says:</h5>
+                        <p>"Customer engagement increased 340% after launching our branded raffle platform. The $1,999 license paid for itself in the first month through increased sales."</p>
+                        <small class="text-muted">- Online Retailer</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <h5 class="text-warning">👨‍💻 Developer Says:</h5>
+                        <p>"The Enterprise API license lets me build custom raffle solutions for clients. I'm charging $5K-15K per project with minimal development time."</p>
+                        <small class="text-muted">- Freelance Developer</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <h5 class="text-warning">🎮 Gaming Company Says:</h5>
+                        <p>"User acquisition costs dropped 60% after implementing gamified raffles. The viral sharing features are incredible for organic growth."</p>
+                        <small class="text-muted">- Mobile Gaming Startup</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">📦 What Every License Includes</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <h5 class="text-warning">🎨 Complete Branding Package</h5>
+                        <ul class="list-unstyled text-start">
+                            <li>✅ Custom logo integration</li>
+                            <li>✅ Brand color customization</li>
+                            <li>✅ Custom domain setup</li>
+                            <li>✅ Branded email templates</li>
+                            <li>✅ White-label admin panel</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <h5 class="text-warning">⚡ Technical Foundation</h5>
+                        <ul class="list-unstyled text-start">
+                            <li>✅ FastAPI backend (enterprise-grade)</li>
+                            <li>✅ PostgreSQL database</li>
+                            <li>✅ JWT authentication system</li>
+                            <li>✅ File upload & validation</li>
+                            <li>✅ Email integration (Brevo API)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <h5 class="text-warning">🚀 Launch Support</h5>
+                        <ul class="list-unstyled text-start">
+                            <li>✅ Complete setup assistance</li>
+                            <li>✅ Domain & SSL configuration</li>
+                            <li>✅ Database migration help</li>
+                            <li>✅ Training & documentation</li>
+                            <li>✅ Go-live support call</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">📊 Your ROI Calculator</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <h4 class="text-warning">💰 Revenue Scenarios</h4>
+                        <div class="mt-4">
+                            <p><strong>Conservative:</strong> $5 entry fee × 100 users = $500/raffle</p>
+                            <p><strong>Moderate:</strong> $10 entry fee × 300 users = $3,000/raffle</p>
+                            <p><strong>Aggressive:</strong> $20 entry fee × 500 users = $10,000/raffle</p>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="text-success">Monthly Revenue Potential:</h5>
+                            <p class="fs-4 text-success">$1,500 - $30,000+</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <h4 class="text-warning">⏱️ Time to Profitability</h4>
+                        <div class="mt-4">
+                            <p><strong>Starter License ($1,999):</strong></p>
+                            <p>Break even with just 1-2 successful raffles</p>
+                            
+                            <p class="mt-3"><strong>Professional Plan ($299/month):</strong></p>
+                            <p>Break even with $300+ revenue per month</p>
+                            
+                            <p class="mt-3"><strong>Enterprise API ($4,999):</strong></p>
+                            <p>Break even with 1-2 client projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <div class="guarantee-badge">
+                <h3 class="text-success">🛡️ 100% Success Guarantee</h3>
+                <p class="lead mb-3">We're so confident in our platform that we guarantee your success:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled text-start">
+                            <li>✅ Platform works exactly as demonstrated</li>
+                            <li>✅ Setup completed within 48 hours</li>
+                            <li>✅ Full refund if not satisfied within 30 days</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled text-start">
+                            <li>✅ Ongoing support as promised</li>
+                            <li>✅ Regular updates & improvements</li>
+                            <li>✅ Revenue generation within 60 days</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency & CTA -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-warning mb-4">⚡ Don't Wait - Your Competitors Won't</h2>
+                <p class="lead mb-4">Every day you delay is revenue lost to competitors who are already launching raffle campaigns.</p>
+                
+                <div class="urgency-banner">
+                    🔥 ONLY 5 LICENSING SPOTS AVAILABLE THIS QUARTER 🔥
+                </div>
+                
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8">
+                        <h3 class="text-warning mb-4">🚀 Get Started Today</h3>
+                        
+                        <a href="mailto:your-email@example.com?subject=Professional Hosted Plan Interest&body=I'm interested in the Professional Hosted plan at $299/month. Please provide setup details and next steps." class="btn btn-cta btn-featured btn-lg mb-3">
+                            ☁️ Start Professional Plan - $299/month
+                        </a>
+                        
+                        <br>
+                        
+                        <a href="mailto:your-email@example.com?subject=Starter License Interest&body=I'm interested in the Starter License at $1,999. Please provide licensing details and setup process." class="btn btn-cta btn-lg mb-3">
+                            🏷️ Get Starter License - $1,999
+                        </a>
+                        
+                        <br>
+                        
+                        <a href="mailto:your-email@example.com?subject=Enterprise API License Interest&body=I'm interested in the Enterprise API License at $4,999. Please provide detailed technical specifications and licensing terms." class="btn btn-cta btn-lg">
+                            🏢 Enterprise API License - $4,999
+                        </a>
+                        
+                        <div class="mt-4">
+                            <p class="small text-muted">💳 Secure payment via Stripe/PayPal | 🔒 Escrow.com available for large licenses</p>
+                            <p class="small text-muted">📞 Free consultation call included | 🚀 Setup begins within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">❓ Frequently Asked Questions</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit-card text-start">
+                        <h5 class="text-warning">Q: How quickly can I launch?</h5>
+                        <p>A: Professional Hosted: 24-48 hours. Self-hosted licenses: 2-5 days depending on your server setup.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: Can I customize the design?</h5>
+                        <p>A: Absolutely! Full branding control including colors, logos, messaging, and custom features.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: What about legal compliance?</h5>
+                        <p>A: Platform includes raffle/sweepstakes legal framework. You're responsible for compliance in your jurisdiction.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="benefit-card text-start">
+                        <h5 class="text-warning">Q: How do I handle payments?</h5>
+                        <p>A: Integrate your own Stripe/PayPal. We provide integration guides and can assist with setup.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: What if I need custom features?</h5>
+                        <p>A: Custom development available at $75-125/hour. Enterprise licenses include some custom work.</p>
+                        
+                        <h5 class="text-warning mt-4">Q: Can I resell licenses?</h5>
+                        <p>A: Enterprise API license includes reseller rights. Other licenses are for your own use only.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="text-warning mb-4">🎯 Ready to Build Your Raffle Empire?</h2>
+            <p class="lead mb-4">Join the smart entrepreneurs who chose licensing over expensive custom development</p>
+            
+            <div class="guarantee-badge">
+                <h4 class="text-success">⏰ Act Fast - Limited Availability</h4>
+                <p class="mb-0">We only work with 5 new partners per quarter to ensure quality support and success</p>
+            </div>
+            
+            <a href="mailto:your-email@example.com?subject=LuckyClub WINS Licensing Inquiry&body=I'm interested in licensing the LuckyClub WINS platform. Please send me more information about available packages and next steps." class="btn btn-cta btn-lg mt-4">
+                📧 Secure Your License Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">© 2025 LuckyClub WINS Licensing | Professional Raffle Platform Solutions</p>
+            <p class="small text-muted">Turn-key licensing • Expert support • Proven results</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards
+        document.querySelectorAll('.pricing-card, .benefit-card, .testimonial-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // ROI Calculator interaction
+        const calculateROI = () => {
+            const entryFee = document.getElementById('entry-fee')?.value || 10;
+            const users = document.getElementById('users')?.value || 200;
+            const monthly = entryFee * users;
+            const annual = monthly * 12;
+            
+            if (document.getElementById('roi-result')) {
+                document.getElementById('roi-result').innerHTML = `
+                    <strong>Monthly Revenue: $${monthly.toLocaleString()}</strong><br>
+                    <strong>Annual Revenue: $${annual.toLocaleString()}</strong>
+                `;
+            }
+        };
+    </script>
+</body>
+</html>

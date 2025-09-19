@@ -482,12 +482,167 @@
                 font-size: 2rem;
             }
             
+            .container {
+                padding: 0 15px;
+            }
+            
             .entry-methods {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .entry-method {
+                padding: 20px 15px;
+                margin-bottom: 15px;
             }
             
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            /* 📱 MOBILE UPLOAD OPTIMIZATIONS */
+            .file-upload {
+                padding: 30px 20px;
+                font-size: 16px; /* Prevents iOS zoom */
+                touch-action: manipulation;
+                min-height: 120px;
+                cursor: pointer;
+            }
+            
+            .upload-icon {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+            
+            .upload-text {
+                font-size: 16px;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+            
+            .upload-hint {
+                font-size: 14px;
+                opacity: 0.8;
+            }
+            
+            /* 📱 MOBILE BUTTON OPTIMIZATIONS */
+            .btn {
+                min-height: 44px; /* Apple's recommended touch target */
+                font-size: 16px;
+                padding: 12px 20px;
+                margin: 5px;
+                border-radius: 8px;
+                touch-action: manipulation;
+            }
+            
+            .btn-primary {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .method-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            .method-actions .btn {
+                width: 100%;
+                margin: 0;
+            }
+            
+            /* 📱 MOBILE FORM OPTIMIZATIONS */
+            input[type="file"] {
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+            
+            .poll-option {
+                padding: 15px;
+                margin: 10px 0;
+                font-size: 16px;
+                border-radius: 8px;
+                cursor: pointer;
+                touch-action: manipulation;
+            }
+            
+            .poll-option input[type="radio"] {
+                transform: scale(1.3);
+                margin-right: 15px;
+            }
+            
+            .poll-option label {
+                cursor: pointer;
+                width: 100%;
+                display: block;
+                line-height: 1.4;
+            }
+            
+            /* 📱 MOBILE NAVIGATION */
+            .navbar-nav .nav-link {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            /* 📱 MOBILE HEADER */
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .entry-method {
+                padding: 15px 10px;
+            }
+            
+            .file-upload {
+                padding: 25px 15px;
+                min-height: 100px;
+            }
+            
+            .btn {
+                font-size: 14px;
+                padding: 10px 15px;
+                min-height: 40px;
+            }
+            
+            .page-header {
+                padding: 1.5rem 0.5rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .upload-icon {
+                font-size: 2rem;
+            }
+            
+            .method-header h3 {
+                font-size: 1.2rem;
+            }
+            
+            .poll-option {
+                padding: 12px;
+                font-size: 14px;
             }
         }
     </style>

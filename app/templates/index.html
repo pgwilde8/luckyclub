@@ -63,6 +63,94 @@
         .stat-number, .feature-title, .testimonial-author, .raffle-title, .raffle-prize {
             color: #ffd700;
         }
+
+        /* 📱 MOBILE HOMEPAGE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero .lead {
+                font-size: 1.1rem;
+            }
+            
+            .btn-lg {
+                font-size: 16px;
+                padding: 12px 24px;
+                margin: 8px;
+                display: block;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .stats-section, .features-section, .current-raffle, .testimonials {
+                padding: 40px 15px;
+            }
+            
+            .stat-card, .feature-card, .testimonial-card {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .feature-title {
+                font-size: 1.3rem;
+            }
+            
+            .navbar-nav {
+                text-align: center;
+            }
+            
+            .navbar-nav .nav-item {
+                margin: 5px 0;
+            }
+            
+            .raffle-title {
+                font-size: 1.8rem;
+            }
+            
+            .raffle-prize {
+                font-size: 1.1rem;
+                margin: 15px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 15px 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-lg {
+                font-size: 14px;
+                padding: 10px 20px;
+                width: 95%;
+            }
+            
+            .stat-card, .feature-card, .testimonial-card {
+                padding: 15px 10px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stats-section, .features-section, .current-raffle, .testimonials {
+                padding: 30px 10px;
+            }
+        }
     </style>
 </head>
 <body>

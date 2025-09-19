@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckyClub WINS API - White-Label Raffle Platform Licensing</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,237,78,0.1) 100%);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            border: 2px solid rgba(255,215,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .pricing-card.featured {
+            border-color: #00ff80;
+            background: rgba(0,255,128,0.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: "🔥 MOST POPULAR";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #00ff80;
+            color: #0f0f23;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .price-badge {
+            font-size: 3rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-left: 10px;
+        }
+        
+        .feature-list {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .feature-list li {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .feature-list i {
+            color: #00ff80;
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .btn-license {
+            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+            border: none;
+            color: #0f0f23;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-license:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+            color: #0f0f23;
+        }
+        
+        .btn-featured {
+            background: linear-gradient(90deg, #00ff80, #00cc66);
+            color: #0f0f23;
+        }
+        
+        .btn-featured:hover {
+            box-shadow: 0 8px 25px rgba(0, 255, 128, 0.6);
+            color: #0f0f23;
+        }
+        
+        .tech-stack {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .tech-badge {
+            background: rgba(255,215,0,0.2);
+            color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        
+        .revenue-highlight {
+            background: linear-gradient(135deg, rgba(0,255,128,0.1) 0%, rgba(0,200,100,0.1) 100%);
+            border: 2px solid rgba(0,255,128,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .revenue-number {
+            font-size: 2.5rem;
+            color: #00ff80;
+            font-weight: bold;
+        }
+        
+        .api-demo {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .use-case-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,215,0,0.2);
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-card {
+                margin: 15px 0;
+                padding: 25px 20px;
+            }
+            
+            .price-badge {
+                font-size: 2rem;
+            }
+            
+            .btn-license {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .api-demo {
+                font-size: 0.8rem;
+                padding: 15px;
+            }
+            
+            .use-case-card {
+                padding: 20px 15px;
+            }
+            
+            .use-case-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">🎰 LuckyClub WINS API</h1>
+            <p class="lead fs-4">White-Label Raffle Platform Licensing</p>
+            <p class="fs-5 mb-4">Launch Your Own Branded Raffle Business | API + Dashboard Licenses | Recurring Revenue Model</p>
+            <p class="mt-3"><i class="fas fa-rocket text-success"></i> <strong>Build Recurring Revenue - Don't Just Sell Once!</strong></p>
+        </div>
+    </section>
+
+    <!-- Licensing Models -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🧩 Choose Your Licensing Model</h2>
+            
+            <div class="row">
+                <!-- White-Label License -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-warning text-center">🏷️ White-Label License</h3>
+                        <div class="text-center">
+                            <div class="price-badge">$2,500</div>
+                            <div class="price-period">per license</div>
+                        </div>
+                        
+                        <ul class="feature-list list-unstyled">
+                            <li><i class="fas fa-check"></i> Complete platform under your brand</li>
+                            <li><i class="fas fa-check"></i> Self-hosted on your server</li>
+                            <li><i class="fas fa-check"></i> Full source code access</li>
+                            <li><i class="fas fa-check"></i> Custom branding & colors</li>
+                            <li><i class="fas fa-check"></i> 6 months support included</li>
+                            <li><i class="fas fa-check"></i> Setup & deployment assistance</li>
+                        </ul>
+                        
+                        <button class="btn btn-license">🚀 Get White-Label License</button>
+                    </div>
+                </div>
+                
+                <!-- SaaS Subscription -->
+                <div class="col-md-4">
+                    <div class="pricing-card featured">
+                        <h3 class="text-center" style="color: #00ff80;">☁️ Hosted SaaS</h3>
+                        <div class="text-center">
+                            <div class="price-badge" style="color: #00ff80;">$199</div>
+                            <div class="price-period">per month</div>
+                        </div>
+                        
+                        <ul class="feature-list list-unstyled">
+                            <li><i class="fas fa-check"></i> Fully hosted by us</li>
+                            <li><i class="fas fa-check"></i> Your custom domain</li>
+                            <li><i class="fas fa-check"></i> Unlimited users & raffles</li>
+                            <li><i class="fas fa-check"></i> White-label branding</li>
+                            <li><i class="fas fa-check"></i> 24/7 support & maintenance</li>
+                            <li><i class="fas fa-check"></i> Regular updates & new features</li>
+                            <li><i class="fas fa-check"></i> SSL, backups, security included</li>
+                        </ul>
+                        
+                        <button class="btn btn-license btn-featured">🔥 Start SaaS Subscription</button>
+                    </div>
+                </div>
+                
+                <!-- API License -->
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="text-warning text-center">🔌 API License</h3>
+                        <div class="text-center">
+                            <div class="price-badge">$4,999</div>
+                            <div class="price-period">per license</div>
+                        </div>
+                        
+                        <ul class="feature-list list-unstyled">
+                            <li><i class="fas fa-check"></i> Complete API access</li>
+                            <li><i class="fas fa-check"></i> Build custom frontends</li>
+                            <li><i class="fas fa-check"></i> Multi-tenant architecture</li>
+                            <li><i class="fas fa-check"></i> Advanced customization rights</li>
+                            <li><i class="fas fa-check"></i> 1 year premium support</li>
+                            <li><i class="fas fa-check"></i> Reseller rights included</li>
+                        </ul>
+                        
+                        <button class="btn btn-license">💼 Get API License</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Potential -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">💰 Your Revenue Potential</h2>
+            
+            <div class="revenue-highlight">
+                <h3 class="text-warning">Conservative Annual Revenue</h3>
+                <div class="revenue-number">$20,000 - $50,000+</div>
+                <p class="lead">Recurring revenue model vs one-time sale</p>
+            </div>
+            
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-calculator"></i></div>
+                        <h5 class="text-warning">5 White-Label Licenses</h5>
+                        <p>5 × $2,500 = <strong>$12,500</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-cloud"></i></div>
+                        <h5 class="text-warning">3 SaaS Clients</h5>
+                        <p>3 × $199/month = <strong>$7,164/year</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-code"></i></div>
+                        <h5 class="text-warning">2 API Licenses</h5>
+                        <p>2 × $4,999 = <strong>$9,998</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-plus"></i></div>
+                        <h5 class="text-warning">Custom Work</h5>
+                        <p>Integrations & features = <strong>$5,000+</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <h4 class="text-success">Total Annual Potential: $34,662+</h4>
+                <p class="lead">vs. $15,000 one-time sale = <strong>130% more revenue in year 1!</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Markets -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🎯 Ideal License Buyers</h2>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h5 class="text-warning">Marketing Agencies</h5>
+                        <p>Offer raffle campaigns as a service to clients. <strong>$199/month per client</strong></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-store"></i></div>
+                        <h5 class="text-warning">E-commerce Brands</h5>
+                        <p>Customer engagement & retention tool. <strong>$2,500 white-label license</strong></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-users"></i></div>
+                        <h5 class="text-warning">Influencers & Communities</h5>
+                        <p>Branded engagement platform for followers. <strong>$199/month hosted</strong></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="use-case-card">
+                        <div class="use-case-icon"><i class="fas fa-coins"></i></div>
+                        <h5 class="text-warning">Crypto & Gaming</h5>
+                        <p>Gamified growth tools and user acquisition. <strong>$4,999 API license</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Demo -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🔌 API Integration Examples</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-warning">Create Raffle</h4>
+                    <div class="api-demo">
+POST /api/raffles/
+{
+  "title": "Summer Giveaway",
+  "headline_prize": "iPhone 15 Pro",
+  "month_key": "2025-09"
+}
+
+Response: 201 Created
+{
+  "id": 123,
+  "title": "Summer Giveaway",
+  "is_active": true
+}
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <h4 class="text-warning">User Entry System</h4>
+                    <div class="api-demo">
+POST /api/proofs/
+Authorization: Bearer {token}
+Content-Type: multipart/form-data
+
+{
+  "raffle_id": 123,
+  "kind": "screenshot",
+  "file": image.jpg
+}
+
+Response: Entries awarded!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="lead">🔗 Complete API documentation included with every license</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🏆 Licensing Success Scenarios</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="use-case-card">
+                        <h5 class="text-warning">Marketing Agency</h5>
+                        <p><strong>"We license this for $199/month per client. With 10 clients, we generate $23,880/year while paying only $2,388 in licensing fees. 900% ROI!"</strong></p>
+                        <small class="text-muted">- Digital marketing agency owner</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="use-case-card">
+                        <h5 class="text-warning">E-commerce Brand</h5>
+                        <p><strong>"The $2,500 white-label license paid for itself in 2 months. Customer engagement up 340%, repeat purchases up 180%."</strong></p>
+                        <small class="text-muted">- Online retailer</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="use-case-card">
+                        <h5 class="text-warning">Developer</h5>
+                        <p><strong>"The API license lets me build custom raffle solutions for clients. Charging $5K-15K per project with 80% profit margins."</strong></p>
+                        <small class="text-muted">- Freelance developer</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why License vs Buy -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🧠 Why Licensing Wins</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-warning">🔴 Traditional Sale Problems</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">❌ <strong>One-time payment:</strong> $15K once, then nothing</li>
+                        <li class="mb-3">❌ <strong>Support burden:</strong> Ongoing requests with no revenue</li>
+                        <li class="mb-3">❌ <strong>No updates:</strong> Platform becomes outdated</li>
+                        <li class="mb-3">❌ <strong>Competition risk:</strong> Buyer could become competitor</li>
+                        <li class="mb-3">❌ <strong>Limited scaling:</strong> Can't leverage success</li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6">
+                    <h4 class="text-success">🟢 Licensing Model Benefits</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">✅ <strong>Recurring revenue:</strong> $20K-50K+ annually</li>
+                        <li class="mb-3">✅ <strong>Scalable income:</strong> More clients = more revenue</li>
+                        <li class="mb-3">✅ <strong>Retain ownership:</strong> Keep control of your IP</li>
+                        <li class="mb-3">✅ <strong>Motivated support:</strong> Happy clients = renewals</li>
+                        <li class="mb-3">✅ <strong>Upsell opportunities:</strong> Custom features, integrations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">⚡ What Powers Your Licenses</h2>
+            
+            <div class="tech-stack">
+                <h4 class="text-warning mb-4">Production-Ready Technology:</h4>
+                <span class="tech-badge">FastAPI (Python)</span>
+                <span class="tech-badge">PostgreSQL Database</span>
+                <span class="tech-badge">JWT Authentication</span>
+                <span class="tech-badge">RESTful APIs</span>
+                <span class="tech-badge">File Upload System</span>
+                <span class="tech-badge">Email Integration</span>
+                <span class="tech-badge">SSL Security</span>
+                <span class="tech-badge">Mobile Optimized</span>
+                <span class="tech-badge">Admin Dashboard</span>
+                <span class="tech-badge">Multi-tenant Ready</span>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="lead">🌐 Live Demo: <a href="https://luckyclubwins.com" class="text-warning">https://luckyclubwins.com</a></p>
+                <p><small>See exactly what your licensees will get</small></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">⚖️ Revenue Model Comparison</h2>
+            
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr class="text-warning">
+                            <th>Revenue Model</th>
+                            <th>Year 1</th>
+                            <th>Year 2</th>
+                            <th>Year 3</th>
+                            <th>Total 3-Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-success">
+                            <td><strong>🔥 Licensing Model</strong></td>
+                            <td><strong>$25,000</strong></td>
+                            <td><strong>$40,000</strong></td>
+                            <td><strong>$60,000</strong></td>
+                            <td><strong>$125,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>One-time Sale</td>
+                            <td>$15,000</td>
+                            <td>$0</td>
+                            <td>$0</td>
+                            <td>$15,000</td>
+                        </tr>
+                        <tr>
+                            <td>Freelance Development</td>
+                            <td>$30,000</td>
+                            <td>$35,000</td>
+                            <td>$40,000</td>
+                            <td>$105,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="text-center mt-4">
+                <h4 class="text-success">Licensing = 733% more revenue than one-time sale!</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">🚀 Start Your Licensing Business</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-warning">📋 What You'll Need to Do:</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> <strong>Set up licensing agreements</strong> (templates provided)</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> <strong>Create API documentation portal</strong> (we'll help)</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> <strong>Establish support processes</strong> (guidelines included)</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> <strong>Market to target buyers</strong> (lead list provided)</li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6">
+                    <h4 class="text-warning">🎯 Your First Month Action Plan:</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-calendar-day text-warning me-2"></i> <strong>Week 1:</strong> Set up licensing infrastructure</li>
+                        <li class="mb-3"><i class="fas fa-calendar-day text-warning me-2"></i> <strong>Week 2:</strong> Create marketing materials</li>
+                        <li class="mb-3"><i class="fas fa-calendar-day text-warning me-2"></i> <strong>Week 3:</strong> Reach out to first prospects</li>
+                        <li class="mb-3"><i class="fas fa-calendar-day text-warning me-2"></i> <strong>Week 4:</strong> Close first 2-3 license deals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-dark">
+        <div class="container text-center">
+            <h2 class="text-warning mb-4">💼 Partner with Us - Launch Your Licensing Business</h2>
+            <p class="lead mb-4">Transform from a one-time seller into a recurring revenue business owner</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-warning" style="background: rgba(255,215,0,0.1); border: 2px solid #ffd700; color: #ffd700;">
+                        <h4><i class="fas fa-handshake me-2"></i>Partnership Opportunity</h4>
+                        <p class="mb-2">We'll help you set up the entire licensing business model</p>
+                        <p class="mb-2">✅ Legal templates ✅ API documentation ✅ Marketing materials ✅ Lead generation</p>
+                        <p class="mb-0 fs-5"><strong>Investment: $7,500 | Potential Return: $50K+ annually</strong></p>
+                    </div>
+                    
+                    <a href="mailto:your-email@example.com?subject=LuckyClub WINS Licensing Partnership&body=I'm interested in setting up a licensing business model for the LuckyClub WINS platform. Please provide details about the partnership opportunity." class="btn btn-license btn-lg me-3">
+                        🤝 Start Partnership Discussion
+                    </a>
+                    
+                    <a href="https://luckyclubwins.com" target="_blank" class="btn btn-outline-warning btn-lg">
+                        🌐 View Live Platform
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h4 class="text-warning">⏰ Limited Partnership Spots Available</h4>
+                <p>We're only working with 3-5 serious partners to ensure quality support and success</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">© 2025 LuckyClub WINS Licensing | Professional Raffle Platform Partnership</p>
+            <p class="small text-muted">Build recurring revenue with proven technology</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards
+        document.querySelectorAll('.pricing-card, .use-case-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Add pricing card click handlers
+        document.querySelectorAll('.btn-license').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cardTitle = this.closest('.pricing-card').querySelector('h3').textContent;
+                const price = this.closest('.pricing-card').querySelector('.price-badge').textContent;
+                
+                const subject = `Interest in ${cardTitle.trim()} - ${price.trim()}`;
+                const body = `I'm interested in the ${cardTitle.trim()} for ${price.trim()}. Please provide more details about the licensing terms and setup process.`;
+                
+                window.location.href = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+        });
+    </script>
+</body>
+</html>

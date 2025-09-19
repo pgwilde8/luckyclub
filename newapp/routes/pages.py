@@ -37,6 +37,11 @@ async def register_page(request: Request , user=Depends(get_current_user_optiona
         return RedirectResponse(url="/dashboard", status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("register.html", {"request": request})
 
+@router.get("/sales-test209")
+async def sales_page(request: Request):
+    """Professional sales page for the platform"""
+    return templates.TemplateResponse("sales-test209.html", {"request": request})
+
 @router.get("/login")
 async def login_page(request: Request, user=Depends(get_current_user_optional)):
     """Serve the login page or redirect if logged in"""
