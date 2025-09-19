@@ -1,9 +1,14 @@
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 from fastapi import HTTPException
+import os
+from dotenv import load_dotenv
 
-# Replace with your API key from Brevo
-BREVO_API_KEY = "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"
+# Load environment variables
+load_dotenv()
+
+# Get API key from environment variable
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
 SENDER_EMAIL = "villavizacamilo31@gmail.com"
 SENDER_NAME = "LuckyClub WINS"
 

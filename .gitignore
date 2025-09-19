@@ -247,3 +247,4 @@ alembic/versions/*.py
 # Configuration files with sensitive data
 config.ini
 settings.ini
+.env
