@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from app.db import get_db
 from app.deps import get_current_user
-from app.models import StockEntry, EntryLedger, Raffle,Ticket
+from app.models import StockEntry, EntryLedger, Raffle,Ticket,ProofUpload
 import traceback
 
 router = APIRouter()
@@ -75,9 +75,10 @@ async def get_user_dashboard(
         ).count()
 
         # 5 Pending proofs
-        pending_proofs = db.query(EntryLedger).filter(
-            EntryLedger.user_id == current_user.id,
-            EntryLedger.status == "pending"
+        pending_proofs = db.query(ProofUpload).filter(
+            ProofUpload.user_id == current_user.id,
+            ProofUpload.raffle_id ==raffle.id,
+            ProofUpload.status == "pending"
         ).count()
 
         return {
