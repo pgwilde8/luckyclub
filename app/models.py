@@ -31,6 +31,7 @@ class EntryLedger(Base):
     source = Column(String(50), nullable=False)   # 'base', 'vote', 'share', 'upload'
     amount = Column(Integer, nullable=False)      # positive integers
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    status = Column(String(20), default="earned", nullable=False) # earned | spent | expired
     user = relationship("User")
     raffle = relationship("Raffle")
 
@@ -52,3 +53,21 @@ class Vote(Base):
     year = Column(Integer, nullable=False)
     month = Column(Integer, nullable=False)
     prize_name = Column(String(100), nullable=False)
+
+class StockEntry(Base):
+    __tablename__ = "stock_entries"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False, unique=True)
+    balance = Column(Integer, nullable=False, default=0)
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+    user = relationship("User")
+
+class Ticket(Base):
+    __tablename__ = "tickets"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
+    raffle_id = Column(Integer, ForeignKey("raffles.id", ondelete="CASCADE"), index=True, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    user = relationship("User")
+    raffle = relationship("Raffle")

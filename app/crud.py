@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import User, Raffle, EntryLedger, ProofUpload,Vote
+from app.models import User, Raffle, EntryLedger, ProofUpload,Vote,StockEntry
 from app.schemas import UserCreate, RaffleCreate, EntryLedgerCreate, ProofUploadCreate
 from passlib.context import CryptContext
 from typing import List, Optional
@@ -27,7 +27,7 @@ def get_user(db: Session, user_id: int):
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
-def create_user(db: Session, user: UserCreate):
+def create_user(db: Session, user: UserCreate ,initial_entries: int = 5):
     hashed_password = get_password_hash(user.password)
     token = str(uuid4())
     db_user = User(
@@ -41,6 +41,38 @@ def create_user(db: Session, user: UserCreate):
     db.refresh(db_user)
 
     send_verification_email(user.email,token)
+        # 3️⃣ Give initial entries in the active raffle
+    raffle = db.query(Raffle).filter(Raffle.is_active == True).first()
+    if raffle:
+        try:
+            # Add entry to ledger
+            ledger_entry = EntryLedger(
+                user_id=db_user.id,
+                raffle_id=raffle.id,
+                source='base',      # source can be 'base' for registration
+                amount=initial_entries,
+                status='earned'
+            )
+            db.add(ledger_entry)
+
+            # Update or create stock entries
+            stock_entry = db.query(StockEntry).filter_by(user_id=db_user.id).first()
+            if stock_entry:
+                stock_entry.balance += initial_entries
+            else:
+                stock_entry = StockEntry(
+                    user_id=db_user.id,
+                    balance=initial_entries
+                )
+                db.add(stock_entry)
+
+            db.commit()
+            db.refresh(ledger_entry)
+            db.refresh(stock_entry)
+
+        except Exception as e:
+            db.rollback()
+            print("Error adding raffle entries:", e)
     return db_user
 
 def authenticate_user(db: Session, email: str, password: str):
@@ -160,21 +192,50 @@ def review_proof(db: Session, proof_id: int, status: str, amount: int = None):
     return proof
 
 
-def save_vote(db: Session, user_id: int, year: int, month: int, prize_name: str):
-    """
-    Save a new vote in the votes table.
-    Only one vote per user per year+month is allowed.
-    """
- 
+def save_vote(db: Session, user_id: int, year: int, month: int, prize_name: str,amount: int):
+    try:  
+        raffle = get_active_raffle(db)
+        if not raffle:
+            return {"error": "No active raffle right now."}
 
-    # create new vote
-    new_vote = Vote(
+        new_vote = Vote(
         user_id=user_id,
         year=year,
         month=month,
         prize_name=prize_name
-    )
-    db.add(new_vote)
-    db.commit()
-    db.refresh(new_vote)
-    return new_vote
+         )
+        db.add(new_vote)
+        db.flush()  # to get new_vote.id
+
+        # 2️⃣ Add entry to ledger
+        ledger_entry = EntryLedger(
+            user_id=user_id,
+            raffle_id=raffle.id,
+            source='vote',
+            amount=amount,
+            status='earned'
+        )
+        db.add(ledger_entry)
+
+        # 3️⃣ Update stock_entries
+        stock_entry = db.query(StockEntry).filter_by(user_id=user_id).first()
+        if stock_entry:
+            stock_entry.balance += amount
+        else:
+            stock_entry = StockEntry(
+                user_id=user_id,
+                balance=amount
+            )
+            db.add(stock_entry)
+
+        # Commit everything
+        db.commit()
+
+        # Refresh objects
+        db.refresh(new_vote)
+        db.refresh(ledger_entry)
+        db.refresh(stock_entry)
+
+        return new_vote
+    except Exception as e:
+        print(e)

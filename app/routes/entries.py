@@ -49,25 +49,25 @@ def get_user_entries_summary(
     entries = []
     if summary['base'] > 0:
         entries.append({
-            "source": "base",
+            "source": "Base",
             "amount": summary['base'],
             "description": "Base monthly entries"
         })
     if summary['vote'] > 0:
         entries.append({
-            "source": "vote",
+            "source": "Vote",
             "amount": summary['vote'],
             "description": "Voting participation entries"
         })
     if summary['share'] > 0:
         entries.append({
-            "source": "share",
+            "source": "Share",
             "amount": summary['share'],
             "description": "Social sharing entries"
         })
     if summary['upload'] > 0:
         entries.append({
-            "source": "upload",
+            "source": "Upload",
             "amount": summary['upload'],
             "description": "Proof upload entries"
         })

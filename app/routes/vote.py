@@ -36,7 +36,8 @@ def create_vote(
         user_id=current_user.id,
         year=vote.year,
         month=vote.month,
-        prize_name=vote.prize_name
+        prize_name=vote.prize_name,
+        amount=2
     )
     return new_vote
 

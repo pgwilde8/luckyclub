@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
 
-from app.routes import auth, entries, proofs, health, admin, pages, raffles,verify,vote
+from app.routes import auth, entries, proofs, health, admin, pages, raffles,verify,vote,dashboard
 from app.db import engine
 from app.models import Base
 
@@ -74,8 +74,10 @@ app.include_router(entries.router, prefix="/api/entries", tags=["entries"])
 app.include_router(proofs.router, prefix="/api/proofs", tags=["proofs"])
 app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
 app.include_router(vote.router, prefix="/api/vote", tags=["vote"])
+app.include_router(dashboard.router, prefix="/api/dashboard", tags=["vote"])
 app.include_router(raffles.router)
 app.include_router(verify.router)
+app.include_router(raffles.router)
 
 # @app.get("/")
 # async def root():
@@ -98,30 +100,30 @@ app.include_router(verify.router)
 #         }
 #     return {"message": "No active raffle found"}
 
-@app.get("/api/dashboard")
-async def get_user_dashboard():
-    """Get user dashboard data"""
-    from app.crud import get_active_raffle, get_user_total_entries_for_raffle, get_user_proofs
-    from app.db import get_db
-    from app.deps import get_current_user
+# @app.get("/api/dashboard")
+# async def get_user_dashboard():
+#     """Get user dashboard data"""
+#     from app.crud import get_active_raffle, get_user_total_entries_for_raffle, get_user_proofs
+#     from app.db import get_db
+#     from app.deps import get_current_user
     
-    # For now, return sample data
-    # Later this will use get_current_user to get real user data
-    return {
-        "current_raffle": {
-            "title": "January 2024 Laptop Raffle",
-            "headline_prize": "Dell XPS 13 Laptop + $500 Cash",
-            "month_key": "2024-01"
-        },
-        "user_stats": {
-            "total_entries": 18,
-            "base_entries": 15,
-            "vote_entries": 0,
-            "share_entries": 0,
-            "upload_entries": 3
-        },
-        "pending_proofs": 2
-    }
+#     # For now, return sample data
+#     # Later this will use get_current_user to get real user data
+#     return {
+#         "current_raffle": {
+#             "title": "January 2024 Laptop Raffle",
+#             "headline_prize": "Dell XPS 13 Laptop + $500 Cash",
+#             "month_key": "2024-01"
+#         },
+#         "user_stats": {
+#             "total_entries": 18,
+#             "base_entries": 15,
+#             "vote_entries": 0,
+#             "share_entries": 0,
+#             "upload_entries": 3
+#         },
+#         "pending_proofs": 2
+#     }
 
 if __name__ == "__main__":
     import uvicorn

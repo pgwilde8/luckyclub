@@ -109,3 +109,53 @@ class VoteResponse(VoteBase):
     vote_id: int   # include primary key in response
     class Config:
         orm_mode = True  # allows ORM objects (SQLAlchemy) to be converted to Pydantic
+
+
+# -------------------------------
+# StockEntry Schemas
+# -------------------------------
+
+class StockEntryBase(BaseModel):
+    user_id: int
+    balance: int
+
+class StockEntryCreate(BaseModel):
+    user_id: int
+    balance: int = 0
+
+
+class StockEntryUpdate(BaseModel):
+    balance: int
+
+
+class StockEntryResponse(StockEntryBase):
+    id: int
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True  # for SQLAlchemy ORM
+
+
+# -------------------------------
+# Ticket Schemas
+# -------------------------------
+
+class TicketBase(BaseModel):
+    user_id: int
+    raffle_id: int
+
+
+class TicketCreate(TicketBase):
+    pass  # same fields as base
+
+
+class TicketResponse(TicketBase):
+    id: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+
+

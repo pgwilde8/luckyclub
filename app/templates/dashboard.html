@@ -5,6 +5,8 @@
   <title>LuckyClub Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="/js/inspinia/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- SweetAlert2 CSS & JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -12,6 +14,26 @@
       color: #eee;
       line-height: 1.6;
       padding-top: 100px;
+    }
+
+        /* Make modal content background white */
+        #joinRaffleModal .modal-content {
+          background-color: #fff !important;
+          color: #333 !important;
+          padding: 20px;
+          border-radius: 8px;
+        }
+
+    /* Optional: make header and footer more readable */
+    #joinRaffleModal .modal-header,
+    #joinRaffleModal .modal-footer {
+      border: none;
+    }
+
+    /* Adjust input and text */
+    #joinRaffleModal input,
+    #joinRaffleModal p {
+      color: #333 !important;
     }
 
     .logo {
@@ -184,17 +206,29 @@
     <div class="section">
       <h2>🎉 Current Raffle</h2>
       <p id="raffle-prize">Loading prize...</p>
+      <!-- Trigger Button -->
+      <button class="btn btn-primary"  onclick="joinRaffle()">Join Raffle</button>
+      </button>
       <div class="row mt-4">
-        <div class="col-md-6 stat-card text-center">
+        <div class="col-md-4 stat-card text-center">
           <div class="stat-number" id="total-entries">-</div>
           <div class="stat-label">Total Entries</div>
         </div>
-        <div class="col-md-6 stat-card text-center">
+
+         <div class="col-md-4 stat-card text-center">
+          <div class="stat-number" id="total-tickets">-</div>
+          <div class="stat-label">Tickets</div>
+        </div>
+
+        <div class="col-md-4 stat-card text-center">
           <div class="stat-number" id="pending-proofs">-</div>
           <div class="stat-label">Pending Proofs</div>
         </div>
       </div>
     </div>
+
+
+
 
     <div class="section">
       <h2>📊 Your Entries</h2>
@@ -228,6 +262,8 @@
   <script src="/js/inspinia/js/jquery-3.1.1.min.js"></script>
   <script src="/js/inspinia/js/popper.min.js"></script>
   <script src="/js/inspinia/js/bootstrap.js"></script>
+
+
   <script>
     async function checkAuth() {
       const token = localStorage.getItem('access_token');
@@ -252,13 +288,14 @@
           document.getElementById('raffle-prize').textContent = raffle.headline_prize;
         }
 
-        const dashRes = await fetch('/api/dashboard', {
+        const dashRes = await fetch('/api/dashboard/dashboard', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (dashRes.ok) {
           const data = await dashRes.json();
-          document.getElementById('total-entries').textContent = data.user_stats.total_entries;
-          document.getElementById('pending-proofs').textContent = data.user_stats.pending_proofs;
+          document.getElementById('total-entries').textContent = data.stock_balance;
+          document.getElementById('pending-proofs').textContent = data.pending_proofs;
+          document.getElementById('total-tickets').textContent = data.tickets;
         }
 
         loadUserEntries();
@@ -279,6 +316,8 @@
       if (data.length === 0) return list.innerHTML = 'No entries yet.';
       list.innerHTML = '';
       data.forEach(e => {
+
+
         list.innerHTML += `
           <div class="entry-card d-flex justify-content-between align-items-center">
             <div>
@@ -341,6 +380,75 @@
         </div>`;
       });
     }
+
+    async function joinRaffle() {
+    const userBalanceElem = document.getElementById("total-entries");
+    let balance = parseInt(userBalanceElem.textContent);
+    const token = localStorage.getItem('access_token');
+
+
+    if (balance <= 0) {
+        Swal.fire({
+            icon: "warning",
+            title: "No Entries",
+            text: "You have no entries to spend.",
+        });
+        return;
+    }
+
+    try {
+        // Ask for confirmation using SweetAlert2
+        const result = await Swal.fire({
+            title: `You have ${balance} entries`,
+            text: "Do you want to spend all of them to join the raffle?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, join!",
+            cancelButtonText: "Cancel",
+        });
+
+        if (result.isConfirmed) {
+            const response = await fetch("/api/raffles/join", {
+                method: "POST",
+                 headers: {
+                        'Authorization': `Bearer ${token}`
+                  },
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.detail || "Failed to join raffle");
+            }
+
+            // Update balance on page
+            userBalanceElem.textContent = data.remaining_entries;
+
+            // Success message
+            Swal.fire({
+                icon: "success",
+                title: "Joined Raffle!",
+                html: `
+                    You spent all your entries.<br>
+                    Tickets created: ${data.tickets_created}<br>
+                    Remaining entries: ${data.remaining_entries}
+                `
+            });
+
+            loadDashboard()
+
+        }
+    } catch (error) {
+
+      console.log(error.message);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: error.message
+        });
+    }
+}
+
     function logout() {
       localStorage.removeItem('access_token');
       localStorage.removeItem('user_email');
