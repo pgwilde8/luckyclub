@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earn Entries - LuckyClub WINS</title>
-    <!-- Added Bootstrap CSS -->
-    <link href="/js/inspinia/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -14,45 +12,87 @@
         }
 
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-            color: #eee;
+            color: #ffffff;
             line-height: 1.6;
-            padding-top: 100px; /* Added padding for fixed navbar */
         }
 
-        /* NAVBAR STYLES - COPIED FROM DASHBOARD */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .navbar {
-            background: rgba(0, 0, 0, 0.9);
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
-        .btn-gold {
-            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
-            border: none;
-            color: #0f0f23 !important;
-            font-weight: bold;
-            border-radius: 30px;
-            padding: 0.5rem 1.2rem;
-            font-weight: bold;
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-email {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #ff6b6b;
         }
-        
-        /* Rest of your original styles remain unchanged */
+
         .main-content {
-            margin-top: 40px; /* Reduced margin since we have body padding */
+            margin-top: 100px;
             padding: 40px 20px;
             max-width: 1200px;
             margin-left: auto;
@@ -171,10 +211,11 @@
             padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid transparent;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -442,41 +483,7 @@
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
         }
- .btn-outline-light {
-        border-color: #f8f9fa;
-        color: #f8f9fa;
-        background: transparent;
-        border-radius: 8px; /* Added to ensure consistency */
-    }
 
-    .btn-outline-light:hover {
-        background: #f8f9fa;
-        color: #0f0f23;
-    }
-
-    .btn-outline-danger {
-        border-color: #dc3545;
-        color: #dc3545;
-        background: transparent;
-        border-radius: 8px; /* Added to ensure consistency */
-    }
-
-    .btn-outline-danger:hover {
-        background: #dc3545;
-        color: white;
-    }
-
-    .btn-logout {
-        border-color: #dc3545;
-        color: #dc3545;
-        background: transparent;
-        border-radius: 8px; /* Added to ensure consistency */
-    }
-
-    .btn-logout:hover {
-        background: #dc3545;
-        color: white;
-    }
         @media (max-width: 768px) {
             .page-title {
                 font-size: 2rem;
@@ -493,25 +500,20 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR - COPIED FROM DASHBOARD -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand logo" href="/">🎰 LuckyClub WINS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item m-1"><a href="/about" class="btn btn-gold">About</a></li>
-                    <li class="nav-item m-1"><a href="/contact" class="btn btn-gold">Contact</a></li>
-                    <li class="nav-item m-1"><a href="/earn-entries" class="btn btn-gold">Earn</a></li>
-                    <li class="nav-item m-1"><span id="user-email" class="btn btn-outline-light"></span></li>
-                    <li class="nav-item m-1"><a href="#" onclick="logout()" class="btn btn-outline-danger">Logout</a></li>
-                </ul>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">🎰 LuckyClub WINS</div>
+            <div class="nav-links">
+                <!-- <a href="/">Home</a> -->
+                <a href="/dashboard">Dashboard</a>
+                <a href="/earn-entries">Earn Entries</a>
+                <div class="user-info">
+                    <span class="user-email" id="user-email">Loading...</span>
+                    <a href="#" class="logout-btn" onclick="logout()">Logout</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <div class="main-content">
         <div class="page-header">
@@ -681,12 +683,6 @@
         </div>
     </div>
 
-    <!-- Added Bootstrap JS dependencies -->
-      <!-- JS -->
-  <script src="/js/inspinia/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/inspinia/js/popper.min.js"></script>
-  <script src="/js/inspinia/js/bootstrap.js"></script>
-    
     <script>
         // Check authentication
         function checkAuth() {
@@ -766,6 +762,9 @@
         // Form submissions
         document.getElementById('proof-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+
+
+            alert("test");
             
             const fileInput = document.getElementById('proof-file');
             if (!fileInput.files[0]) {
@@ -867,7 +866,7 @@
         }
 
         function viewMyShares() {
-            window.location.href = '/dashboard';
+            alert('Share history coming soon!');
         }
 
         // Facebook share form submission
@@ -893,7 +892,7 @@
                 const token = localStorage.getItem('access_token');
                 
                 // First get the current raffle ID
-                const raffleResponse = await fetch('/api/raffles/active', {
+                const raffleResponse = await fetch('/api/raffles/current', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -964,7 +963,7 @@
         }
 
         function viewShares() {
-            window.location.href = '/dashboard';
+            alert('Share history coming soon!');
         }
 
         // Initialize page

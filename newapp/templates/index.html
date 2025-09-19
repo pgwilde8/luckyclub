@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckyClub WINS - Where Dreams Become Reality</title>
+
+    <!-- Inspinia CSS -->
+    <link href="/js/inspinia/css/font-awesome.css" rel="stylesheet">
+    <link href="/js/inspinia/css/animate.css" rel="stylesheet">
+    <link href="/js/inspinia/css/style.css" rel="stylesheet">
+    <link href="/js/inspinia/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .navbar {
+            background: rgba(0,0,0,0.9);
+        }
+        .btn-gold {
+            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e);
+            border: none;
+            color: #0f0f23 !important;
+            font-weight: bold;
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+        /* Keep active button gold */
+        .btn-gold.active,
+        .btn-gold:active {
+            background: linear-gradient(90deg, #ffd700, #ffb400, #ffed4e) !important;
+            color: #0f0f23 !important;
+            box-shadow: none !important;
+        }
+        .hero {
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+        .stats-section, .features-section, .current-raffle, .testimonials {
+            padding: 60px 20px;
+        }
+        .stat-card, .feature-card, .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .stat-number, .feature-title, .testimonial-author, .raffle-title, .raffle-prize {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand logo" href="/">🎰 LuckyClub WINS</a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item m-1">
+          <a href="/" class="btn btn-gold active">Home</a>
+        </li>
+        <li class="nav-item m-1">
+          <a href="/about" class="btn btn-gold">About</a>
+        </li>
+        <li class="nav-item m-1">
+          <a href="/contact" class="btn btn-gold">Contact</a>
+        </li>
+        <li class="nav-item m-1">
+          <a href="/login" class="btn btn-outline btn-gold">Sign In</a>
+        </li>
+        <li class="nav-item m-1">
+          <a href="/register" class="btn btn-gold">Join Now</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero text-center">
+    <h1 class="logo">🎰 LuckyClub WINS 🎰</h1>
+    <p class="lead">Where Dreams Become Reality</p>
+    <p>Join thousands of winners in our monthly raffles and turn your luck into life-changing prizes!</p>
+    <a href="/register" class="btn btn-gold btn-lg m-2">🎯 JOIN THE CLUB</a>
+    <a href="/about" class="btn btn-outline btn-gold btn-lg m-2">📖 LEARN MORE</a>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section container">
+    <div class="row text-center">
+        <div class="col-md-3 stat-card">
+            <h2 class="stat-number">50,000+</h2>
+            <p>Active Members</p>
+        </div>
+        <div class="col-md-3 stat-card">
+            <h2 class="stat-number">$2.5M+</h2>
+            <p>Prizes Awarded</p>
+        </div>
+        <div class="col-md-3 stat-card">
+            <h2 class="stat-number">1,200+</h2>
+            <p>Monthly Winners</p>
+        </div>
+        <div class="col-md-3 stat-card">
+            <h2 class="stat-number">99.8%</h2>
+            <p>Satisfaction Rate</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section container">
+    <div class="row text-center">
+        <div class="col-md-4 feature-card">
+            <h3 class="feature-title">🎯 Earn Entries</h3>
+            <p>Vote, share, and upload proof screenshots to earn raffle entries every month.</p>
+        </div>
+        <div class="col-md-4 feature-card">
+            <h3 class="feature-title">🏆 Amazing Prizes</h3>
+            <p>From laptops and phones to cash prizes and exclusive experiences.</p>
+        </div>
+        <div class="col-md-4 feature-card">
+            <h3 class="feature-title">🤝 Community</h3>
+            <p>Join a vibrant community of winners and dreamers.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Current Raffle Section -->
+<section class="current-raffle text-center">
+     <h2 class="raffle-title">🎉 Current Raffle</h2>
+     <div class="raffle-prize" id="raffle-prize">Loading...</div>
+    <a href="/register" class="btn btn-gold btn-lg">🎰 ENTER NOW</a>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials container">
+    <div class="row">
+        <div class="col-md-4 testimonial-card">
+            <p>"I never thought I'd win, but LuckyClub WINS made it happen! Got my dream laptop last month!"</p>
+            <strong class="testimonial-author">- Sarah M., Winner</strong>
+        </div>
+        <div class="col-md-4 testimonial-card">
+            <p>"The community is amazing and the prizes are real. I've won twice already!"</p>
+            <strong class="testimonial-author">- Mike R., 2x Winner</strong>
+        </div>
+        <div class="col-md-4 testimonial-card">
+            <p>"Best decision I made this year. Free to join, real prizes, and actually fun!"</p>
+            <strong class="testimonial-author">- Lisa K., Member</strong>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-4">
+    <p>© 2025 LuckyClub WINS. Where Dreams Become Reality. 🎰</p>
+</footer>
+
+<!-- Inspinia JS -->
+<script src="/js/inspinia/js/jquery-3.1.1.min.js"></script>
+<script src="/js/inspinia/js/popper.min.js"></script>
+<script src="/js/inspinia/js/bootstrap.js"></script>
+
+<script>
+    // Redirect if user is logged in
+    const token = localStorage.getItem("access_token");
+    if (token) {
+        window.location.href = "/dashboard";
+    }
+
+    // Load current raffle (public)
+    async function loadRaffle() {
+        try {
+            const raffleResponse = await fetch('/api/raffles/active');
+            if (raffleResponse.ok) {
+                const raffle = await raffleResponse.json();
+                if (raffle) {
+                    document.getElementById('raffle-prize').textContent = raffle.headline_prize;
+                } else {
+                    document.getElementById('raffle-prize').textContent = "No active raffle right now 🎟️";
+                }
+            } else {
+                document.getElementById('raffle-prize').textContent = "Failed to load raffle ❌";
+            }
+        } catch (error) {
+            document.getElementById('raffle-prize').textContent = "Error loading raffle ❌";
+        }
+    }
+
+    // Call on page load
+    loadRaffle();
+</script>
+
+</body>
+</html>
