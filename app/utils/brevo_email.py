@@ -9,7 +9,7 @@ load_dotenv()
 
 # Get API key from environment variable
 BREVO_API_KEY = os.getenv("BREVO_API_KEY")
-SENDER_EMAIL = "villavizacamilo31@gmail.com"
+SENDER_EMAIL = "noreply@luckyclubwins.com"
 SENDER_NAME = "LuckyClub WINS"
 
 # Configure API client

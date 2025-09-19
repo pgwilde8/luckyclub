@@ -9,7 +9,7 @@ load_dotenv()
 
 # Get API key from environment variable
 BREVO_API_KEY = os.getenv("BREVO_API_KEY")
-SENDER_EMAIL = "villavizacamilo31@gmail.com"
+SENDER_EMAIL = "noreply@luckyclubwins.com"
 SENDER_NAME = "LuckyClub WINS"
 
 # Configure API client
@@ -19,7 +19,7 @@ configuration.api_key['api-key'] = BREVO_API_KEY
 api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
 
 def send_verification_email(to_email: str, token: str):
-    verification_link = f"http://localhost:9177/api/verify/{token}"
+    verification_link = f"https://luckyclubwins.com/api/verify/{token}"
     send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
         to=[{"email": to_email}],
         sender={"name": SENDER_NAME, "email": SENDER_EMAIL},

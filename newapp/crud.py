@@ -6,7 +6,7 @@ from typing import List, Optional
 from datetime import datetime
 from uuid import uuid4
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-from app.utils.brevo_email import send_verification_email
+from newapp.utils.brevo_email import send_verification_email
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

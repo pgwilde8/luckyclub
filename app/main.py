@@ -104,14 +104,13 @@ app.include_router(raffles.router)
 
 @app.get("/api/dashboard")
 async def get_user_dashboard(
-    current_user = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Get user dashboard data"""
-    from app.crud import get_active_raffle, get_user_total_entries_for_raffle, get_user_proofs
+    """Get user dashboard data - public endpoint for page loading"""
+    from app.crud import get_active_raffle
     from sqlalchemy.orm import Session
     
-    # Get real user data
+    # Get raffle data (public info)
     raffle = get_active_raffle(db)
     if not raffle:
         return {"error": "No active raffle found"}
@@ -123,13 +122,13 @@ async def get_user_dashboard(
             "month_key": raffle.month_key
         },
         "user_stats": {
-            "total_entries": 18,
-            "base_entries": 15,
+            "total_entries": 0,
+            "base_entries": 0,
             "vote_entries": 0,
             "share_entries": 0,
-            "upload_entries": 3
+            "upload_entries": 0
         },
-        "pending_proofs": 2
+        "pending_proofs": 0
     }
 
 if __name__ == "__main__":
