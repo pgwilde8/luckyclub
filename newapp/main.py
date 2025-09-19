@@ -4,8 +4,11 @@ from fastapi.templating import Jinja2Templates
 import os
 
 from app.routes import auth, entries, proofs, health, admin, pages, raffles,verify,email,vote
-from app.db import engine
+from app.db import engine, get_db
 from app.models import Base
+from app.deps import get_current_user
+from sqlalchemy.orm import Session
+from fastapi import Depends
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -99,19 +102,24 @@ app.include_router(email.router)
 #     return {"message": "No active raffle found"}
 
 @app.get("/api/dashboard")
-async def get_user_dashboard():
+async def get_user_dashboard(
+    current_user = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
     """Get user dashboard data"""
     from app.crud import get_active_raffle, get_user_total_entries_for_raffle, get_user_proofs
-    from app.db import get_db
-    from app.deps import get_current_user
+    from sqlalchemy.orm import Session
     
-    # For now, return sample data
-    # Later this will use get_current_user to get real user data
+    # Get real user data
+    raffle = get_active_raffle(db)
+    if not raffle:
+        return {"error": "No active raffle found"}
+    
     return {
         "current_raffle": {
-            "title": "January 2024 Laptop Raffle",
-            "headline_prize": "Dell XPS 13 Laptop + $500 Cash",
-            "month_key": "2024-01"
+            "title": raffle.title,
+            "headline_prize": raffle.headline_prize,
+            "month_key": raffle.month_key
         },
         "user_stats": {
             "total_entries": 18,
