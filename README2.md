@@ -13,7 +13,7 @@ cd /opt/webwise/luckyclub
 source .venv/bin/activate
 
 git add .
-git commit -m "xxx"
+git commit -m "dns"
 git push
 
 uvicorn app.main:app --host 0.0.0.0 --port 9177 --reload
@@ -40,6 +40,19 @@ psql -U luckyclub -d luckyclub -h localhost
  public | users           | table | luckyclub
 (5 rows)
 
+sudo -u postgres psql -d luckyclub -c "
+SELECT id, user_id, kind, file_path, status, created_at
+FROM proof_uploads 
+ORDER BY created_at DESC 
+LIMIT 10;
+"
+
+sudo -u postgres psql -d luckyclub -c "
+SELECT id, user_id, kind, file_path, status, created_at, reviewed_at
+FROM proof_uploads 
+WHERE file_path LIKE '%96a58fbc-ef96-42a7-a100-7bf90db41fb7.webp%'
+ORDER BY created_at DESC;
+"
 -------------------------------------------------
 
 
