@@ -213,12 +213,100 @@
             margin: 20px 0;
         }
         
+        /* Business Model Styles */
+        .business-model-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid rgba(0,255,128,0.3);
+        }
+        
+        .step-list {
+            position: relative;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 45px;
+            width: 2px;
+            height: 25px;
+            background: linear-gradient(to bottom, #00ff80, #ffd700);
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #00ff80, #ffd700);
+            color: #0f0f23;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h6 {
+            margin-bottom: 5px;
+        }
+        
+        .revenue-example {
+            background: rgba(255,215,0,0.1);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .revenue-breakdown {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .advantage-item {
+            padding: 20px 10px;
+        }
+        
+        .success-metrics {
+            background: rgba(0,255,128,0.1);
+            border: 2px solid #00ff80;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .metric-item {
+            padding: 20px;
+        }
+        
+        .metric-item h4 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
         /* Mobile Optimizations */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem; }
             .cta-button { padding: 15px 30px; font-size: 1.2rem; }
             .steps-container { grid-template-columns: 1fr; }
             .prize-value { font-size: 2rem; }
+            
+            .business-model-card { padding: 20px; margin: 15px 0; }
+            .step-item { margin-bottom: 20px; }
+            .step-number { width: 35px; height: 35px; font-size: 1rem; }
+            .revenue-example { padding: 15px; }
+            .advantage-item { padding: 15px 5px; }
+            .metric-item h4 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -226,17 +314,16 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="hero-title">🎁 Win a $15,000 Raffle Business</h1>
+            <h1 class="hero-title">🎁 Win a Complete Raffle Business Package</h1>
             <p class="fs-3 text-warning mb-3">Premium Entry Giveaway for Serious Entrepreneurs</p>
-            <p class="lead fs-4 mb-4">One lucky winner gets a white-labeled raffle platform + 1 year of support to launch their own sweepstakes business — no tech skills needed.</p>
+            <p class="lead fs-4 mb-4">One lucky winner gets a <strong>Complete Raffle Business Package worth $15,000</strong> — white-labeled platform + 1 year of support to launch your own sweepstakes business. No tech skills needed!</p>
             <p class="fs-5 text-success mb-4">💰 Entry fees fund platform improvements and winner support</p>
-            <a href="#entry-tiers" class="cta-button">🔥 Choose Your Entry Tier</a>
+            <a href="#entry-tiers" class="cta-button">🎯 Enter FREE Now!</a>
             
-            <div class="mt-4">
-                <p class="text-light">💎 BRONZE TIER: 5 Entries - FREE</p>
-                <p class="text-info">⭐ SILVER TIER: 10 Entries - $9.99</p>
-                <p class="text-warning"><strong>🔥 GOLD TIER: 25 Entries - $29.99</strong></p>
-            </div>
+                <div class="mt-4">
+                    <p class="text-success fs-4"><strong>💎 FREE ENTRY: 5 Chances to Win!</strong></p>
+                    <p class="text-light">No payment required - enter now and upgrade later for better odds</p>
+                </div>
         </div>
     </section>
 
@@ -247,104 +334,235 @@
             
             <div class="prize-card">
                 <div class="prize-value">$15,000</div>
-                <h3 class="text-warning mb-4">Complete Raffle Business Package</h3>
+                <h3 class="text-warning mb-2">Complete Raffle Business Package</h3>
+                <p class="lead text-info mb-4">Everything you need to launch your own profitable raffle business!</p>
                 
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="list-unstyled text-start">
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>White-labeled license of <strong>LuckyClubWINS</strong> platform</li>
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Admin dashboard + multi-entry system + secure backend</li>
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Complete source code and documentation</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>Complete White-Label Platform</strong> - LuckyClubWINS system with your branding</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>Admin Dashboard</strong> - Full control panel + multi-entry system + secure backend</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>Complete Source Code</strong> - Full documentation + customization rights</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="list-unstyled text-start">
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>1 full year of <strong>technical support</strong> ($3,750 value)</li>
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Demo domain or full hosting setup</li>
-                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Business growth strategy session with the creator</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>1 Full Year Technical Support</strong> - $3,750 value included</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>Demo Domain or Full Hosting</strong> - Ready-to-launch setup</li>
+                            <li class="mb-3"><i class="fas fa-check text-success me-3"></i><strong>Business Growth Strategy Session</strong> - 1-on-1 with the creator</li>
                         </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-4 text-center" style="background: rgba(255,215,0,0.1); border-radius: 15px; border: 2px solid #ffd700;">
+                    <h5 class="text-warning mb-2">🎯 Total Package Value: $15,000</h5>
+                    <p class="mb-0 lead">Everything you need to start earning from raffles immediately!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Raffle Business Works -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center text-warning mb-5">💡 How the Raffle Business Model Works</h2>
+            <p class="text-center lead mb-5">See exactly how you'll make money with your own raffle platform!</p>
+            
+            <div class="row">
+                <!-- How It Works -->
+                <div class="col-md-6">
+                    <div class="business-model-card">
+                        <h4 class="text-success mb-4">🎯 The Simple Process</h4>
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h6 class="text-warning">Choose Your Prize</h6>
+                                    <p class="small">iPhone, cash, gift cards, experiences - anything valuable!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h6 class="text-warning">Set Entry Price</h6>
+                                    <p class="small">$5, $10, $25 - whatever your market will pay</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h6 class="text-warning">Promote & Collect</h6>
+                                    <p class="small">Share on social media, collect entries automatically</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h6 class="text-warning">Draw Winner & Profit</h6>
+                                    <p class="small">Random selection, announce winner, keep the profit!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Revenue Examples -->
+                <div class="col-md-6">
+                    <div class="business-model-card">
+                        <h4 class="text-info mb-4">💰 Real Revenue Examples</h4>
+                        
+                        <div class="revenue-example mb-4">
+                            <h6 class="text-warning">📱 iPhone 15 Raffle</h6>
+                            <div class="revenue-breakdown">
+                                <p class="small mb-1">Prize Cost: $800</p>
+                                <p class="small mb-1">Entry Price: $10</p>
+                                <p class="small mb-1">Entries Sold: 200</p>
+                                <p class="small mb-1">Total Revenue: $2,000</p>
+                                <p class="text-success"><strong>Your Profit: $1,200</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="revenue-example mb-4">
+                            <h6 class="text-warning">💵 $1,000 Cash Raffle</h6>
+                            <div class="revenue-breakdown">
+                                <p class="small mb-1">Prize Cost: $1,000</p>
+                                <p class="small mb-1">Entry Price: $5</p>
+                                <p class="small mb-1">Entries Sold: 500</p>
+                                <p class="small mb-1">Total Revenue: $2,500</p>
+                                <p class="text-success"><strong>Your Profit: $1,500</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="revenue-example">
+                            <h6 class="text-warning">🎮 Gaming Console Raffle</h6>
+                            <div class="revenue-breakdown">
+                                <p class="small mb-1">Prize Cost: $400</p>
+                                <p class="small mb-1">Entry Price: $15</p>
+                                <p class="small mb-1">Entries Sold: 150</p>
+                                <p class="small mb-1">Total Revenue: $2,250</p>
+                                <p class="text-success"><strong>Your Profit: $1,850</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business Advantages -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="business-model-card text-center">
+                        <h4 class="text-warning mb-4">🚀 Why Raffle Businesses Are So Profitable</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="advantage-item">
+                                    <i class="fas fa-clock text-success fa-2x mb-2"></i>
+                                    <h6 class="text-warning">Quick Setup</h6>
+                                    <p class="small">Launch raffles in minutes, not months</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="advantage-item">
+                                    <i class="fas fa-users text-success fa-2x mb-2"></i>
+                                    <h6 class="text-warning">Viral Marketing</h6>
+                                    <p class="small">People share to increase their odds</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="advantage-item">
+                                    <i class="fas fa-chart-line text-success fa-2x mb-2"></i>
+                                    <h6 class="text-warning">Predictable Revenue</h6>
+                                    <p class="small">Know your profit before you start</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="advantage-item">
+                                    <i class="fas fa-mobile-alt text-success fa-2x mb-2"></i>
+                                    <h6 class="text-warning">Mobile Optimized</h6>
+                                    <p class="small">Works perfectly on phones & tablets</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Metrics -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="success-metrics">
+                        <h5 class="text-center text-warning mb-4">📊 Typical Performance Metrics</h5>
+                        
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="metric-item">
+                                    <h4 class="text-success">$2,000+</h4>
+                                    <p class="small">Average revenue per raffle</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="metric-item">
+                                    <h4 class="text-success">150%</h4>
+                                    <p class="small">Average profit margin</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="metric-item">
+                                    <h4 class="text-success">3-7 days</h4>
+                                    <p class="small">Typical raffle duration</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Entry Tiers -->
+    <!-- Free Entry Focus -->
     <section class="py-5 bg-dark" id="entry-tiers">
         <div class="container">
-            <h2 class="text-center text-warning mb-5">💳 Choose Your Entry Tier</h2>
-            <p class="text-center lead mb-5">Investment in your business future - even if you don't win, you get exclusive benefits!</p>
+            <h2 class="text-center text-warning mb-5">🎯 Enter the Giveaway FREE</h2>
+            <p class="text-center lead mb-5">Start with 5 free entries - no payment required! Upgrade anytime for better odds.</p>
             
             <div class="row justify-content-center">
-                <!-- Bronze Tier (Free) -->
-                <div class="col-md-4">
-                    <div class="pricing-card">
-                        <h3 class="text-success">💎 Bronze Entry</h3>
+                <!-- Free Entry Focus -->
+                <div class="col-md-8">
+                    <div class="pricing-card featured" style="transform: scale(1.05); border: 3px solid #00ff80;">
+                        <h3 class="text-success">💎 FREE Entry - Get Started Now!</h3>
                         <div class="price-badge text-success">FREE</div>
-                        <p class="price-period">5 Entries</p>
+                        <p class="price-period">5 Entries to Win Complete Business Package Worth $15,000</p>
                         
                         <ul class="list-unstyled text-start mt-4">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>5 Entries</strong> into $15K giveaway</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>5 Entries</strong> into Complete Business Package giveaway</li>
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Entry confirmation & updates</li>
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Access to results announcement</li>
-                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i>No license discounts</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Bonus entry opportunities</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Option to upgrade later for better odds</li>
                         </ul>
                         
-                        <button class="btn btn-cta" onclick="selectTier('bronze', 0, 5)" style="background: linear-gradient(90deg, #00ff80, #00cc66); color: #0f0f23;">
-                            💎 Enter Bronze (Free)
+                        <button class="btn btn-cta" onclick="selectTier('bronze', 0, 5)" style="background: linear-gradient(90deg, #00ff80, #00cc66); color: #0f0f23; font-size: 1.3rem; padding: 20px 40px;">
+                            💎 Enter FREE Now - 5 Entries!
                         </button>
-                        <p class="small mt-2 text-muted">Perfect for: Everyone - no risk entry</p>
-                        <div class="mt-3">
-                            <a href="/upgrade-entries" class="btn btn-outline-warning btn-sm">
-                                ⬆️ Want Better Odds? See Upgrades
+                        <p class="small mt-3 text-muted">Perfect for: Everyone - zero risk, real chance to win</p>
+                        
+                        <div class="mt-4 p-3" style="background: rgba(255,215,0,0.1); border-radius: 10px; border: 2px solid #ffd700;">
+                            <h5 class="text-warning mb-2">💡 Want Better Odds?</h5>
+                            <p class="mb-2">After entering FREE, you can upgrade to get:</p>
+                            <p class="mb-2">⭐ <strong>Silver ($9.99):</strong> 10 entries + $500 business package discount</p>
+                            <p class="mb-2">🔥 <strong>Gold ($29.99):</strong> 25 entries + $1,000 discount + VIP access</p>
+                            <a href="/upgrade-entries" class="btn btn-outline-warning">
+                                ⬆️ See Upgrade Options
                             </a>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Silver Tier -->
-                <div class="col-md-4">
-                    <div class="pricing-card featured">
-                        <div class="popular-badge">⭐ MOST POPULAR</div>
-                        <h3 class="text-info">⭐ Silver Entry</h3>
-                        <div class="price-badge text-info">$9.99</div>
-                        <p class="price-period">10 Entries</p>
-                        
-                        <ul class="list-unstyled text-start mt-4">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>10 Entries</strong> into $15K giveaway</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>$500 discount</strong> on any license</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>Free 30-min consultation</strong></li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Exclusive Facebook group access</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Early access to new features</li>
-                        </ul>
-                        
-                        <button class="btn btn-cta btn-featured" onclick="selectTier('silver', 9.99, 10)">
-                            ⭐ Enter Silver Tier
-                        </button>
-                        <p class="small mt-2 text-muted">Perfect for: Small businesses, creators</p>
-                    </div>
-                </div>
-                
-                <!-- Gold Tier -->
-                <div class="col-md-4">
-                    <div class="pricing-card">
-                        <h3 class="text-warning">🔥 Gold Entry</h3>
-                        <div class="price-badge">$29.99</div>
-                        <p class="price-period">25 Entries</p>
-                        
-                        <ul class="list-unstyled text-start mt-4">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>25 Entries</strong> into $15K giveaway</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>$1,000 discount</strong> on any license</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>Free platform demo</strong> & setup consultation</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>3 months free support</strong> if you buy</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>VIP access</strong> to founder</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority customer status</li>
-                        </ul>
-                        
-                        <button class="btn btn-cta" onclick="selectTier('gold', 29.99, 25)">
-                            🔥 Enter Gold Tier
-                        </button>
-                        <p class="small mt-2 text-muted">Perfect for: Agencies, serious entrepreneurs</p>
                     </div>
                 </div>
             </div>
@@ -352,7 +570,7 @@
             <div class="text-center mt-5">
                 <div class="social-proof">
                     <p class="entry-count text-warning fs-4" id="total-entries">🎯 1,247 entrepreneurs have entered so far!</p>
-                    <p class="text-success fs-5" id="revenue-counter">💰 $31,492 invested in entries</p>
+                    <p class="text-success fs-5" id="revenue-counter">💰 $31,492 invested in upgrades</p>
                     <p class="text-muted">Join serious business owners from around the world</p>
                 </div>
             </div>
@@ -533,17 +751,18 @@
     <script>
         // Tier selection data
         const tierData = {
-            bronze: {
-                name: 'Bronze Entry',
-                price: 0,
-                entries: 5,
-                benefits: [
-                    '5 Entries into $15K giveaway',
-                    'Entry confirmation & updates',
-                    'Access to results announcement',
-                    'No license discounts included'
-                ]
-            },
+        bronze: {
+            name: 'Bronze Entry',
+            price: 0,
+            entries: 5,
+            benefits: [
+                '5 Entries into Complete Business Package giveaway',
+                'Entry confirmation & updates',
+                'Access to results announcement',
+                'Bonus entry opportunities',
+                'Option to upgrade later for better odds'
+            ]
+        },
             silver: {
                 name: 'Silver Entry',
                 price: 9.99,

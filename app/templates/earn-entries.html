@@ -477,7 +477,251 @@
         background: #dc3545;
         color: white;
     }
-        @media (max-width: 768px) {
+    
+    /* Bonus Entries Styles */
+    .bonus-entries-section {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 237, 78, 0.15) 100%);
+        border-radius: 25px;
+        padding: 40px;
+        margin: 40px 0;
+        border: 3px solid #ffd700;
+        box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .bonus-entries-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .bonus-header {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .bonus-header h4 {
+        color: #ffd700;
+        margin-bottom: 15px;
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .bonus-header p {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+    
+    .bonus-highlight {
+        background: linear-gradient(90deg, #ff4444, #ff6666, #ff4444);
+        background-size: 200% 100%;
+        animation: highlightPulse 2s ease-in-out infinite;
+        border-radius: 25px;
+        padding: 12px 25px;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+    }
+    
+    .highlight-text {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    @keyframes highlightPulse {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    .bonus-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .bonus-method {
+        background: linear-gradient(135deg, rgba(0, 255, 128, 0.15) 0%, rgba(0, 204, 102, 0.15) 100%);
+        border: 3px solid #00ff80;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .bonus-method::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    .bonus-method:hover::before {
+        left: 100%;
+    }
+    
+    .bonus-method:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 255, 128, 0.4);
+        border-color: #00ff80;
+    }
+    
+    .bonus-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .bonus-content h6 {
+        color: #00ff80;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .bonus-description {
+        color: #ccc;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+    }
+    
+    .btn-bonus {
+        background: linear-gradient(90deg, #00ff80, #00cc66, #00ff80);
+        background-size: 200% 100%;
+        border: none;
+        color: #0f0f23;
+        font-weight: bold;
+        padding: 15px 30px;
+        border-radius: 30px;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn-bonus::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    .btn-bonus:hover::before {
+        left: 100%;
+    }
+    
+    .btn-bonus:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 35px rgba(0, 255, 128, 0.7);
+        background-position: 100% 0;
+    }
+    
+    .bonus-form {
+        background: rgba(255, 215, 0, 0.1);
+        border: 2px solid #ffd700;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+    
+    .platform-options {
+        display: flex;
+        gap: 20px;
+        margin: 15px 0;
+    }
+    
+    .platform-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .platform-option:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .platform-option input[type="radio"] {
+        margin: 0;
+    }
+    
+    .platform-icon {
+        font-size: 1.1rem;
+    }
+    
+    .referral-info {
+        text-align: center;
+    }
+    
+    .referral-link-container {
+        display: flex;
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .referral-link-input {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #ffd700;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    .btn-copy {
+        background: #ffd700;
+        color: #0f0f23;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    
+    .referral-note {
+        color: #00ff80;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+    
+    .bonus-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
             .page-title {
                 font-size: 2rem;
             }
@@ -644,6 +888,34 @@
                 padding: 12px;
                 font-size: 14px;
             }
+            
+            /* 📱 BONUS ENTRIES MOBILE STYLES */
+            .bonus-methods {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .bonus-method {
+                padding: 20px;
+            }
+            
+            .bonus-icon {
+                font-size: 2.5rem;
+            }
+            
+            .platform-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .referral-link-container {
+                flex-direction: column;
+            }
+            
+            .bonus-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -658,7 +930,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item m-1"><a href="/about" class="btn btn-gold">About</a></li>
+                    <li class="nav-item m-1"><a href="/abouts" class="btn btn-gold">About</a></li>
                     <li class="nav-item m-1"><a href="/contact" class="btn btn-gold">Contact</a></li>
                     <li class="nav-item m-1"><a href="/earn-entries" class="btn btn-gold">Earn</a></li>
                     <li class="nav-item m-1"><span id="user-email" class="btn btn-outline-light"></span></li>
@@ -676,6 +948,131 @@
 
         <div id="success-message" class="success-message"></div>
         <div id="error-message" class="error-message"></div>
+
+        <!-- Bonus Entries Section -->
+        <div class="bonus-entries-section" id="bonus-entries-section">
+            <div class="bonus-header">
+                <h4>🎁 Earn Bonus Entries (All Tiers)</h4>
+                <p>Get additional entries beyond your tier level! These stack with your base entries.</p>
+                <div class="bonus-highlight">
+                    <span class="highlight-text">🔥 UP TO +8 EXTRA ENTRIES AVAILABLE!</span>
+                </div>
+            </div>
+            
+            <div class="bonus-methods">
+                <div class="bonus-method">
+                    <div class="bonus-icon">📱</div>
+                    <div class="bonus-content">
+                        <h6>+1 Entry: Share on LinkedIn/Twitter</h6>
+                        <p class="bonus-description">Share LuckyClub WINS on your professional social media</p>
+                        <button class="btn btn-bonus" onclick="showSocialShare()">
+                            📱 Share on Social Media
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bonus-method">
+                    <div class="bonus-icon">👥</div>
+                    <div class="bonus-content">
+                        <h6>+2 Entries: Refer a Friend</h6>
+                        <p class="bonus-description">Get a friend to enter the giveaway with your referral link</p>
+                        <button class="btn btn-bonus" onclick="showReferral()">
+                            👥 Get Referral Link
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bonus-method">
+                    <div class="bonus-icon">🎯</div>
+                    <div class="bonus-content">
+                        <h6>+5 Entries: Book Platform Demo</h6>
+                        <p class="bonus-description">Schedule a 30-minute demo of the raffle platform</p>
+                        <button class="btn btn-bonus" onclick="showDemoBooking()">
+                            🎯 Book Demo (5 Entries!)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Share Form -->
+            <form id="social-share-form" class="bonus-form" style="display: none;">
+                <div class="form-group">
+                    <label>Choose Platform:</label>
+                    <div class="platform-options">
+                        <label class="platform-option">
+                            <input type="radio" name="platform" value="linkedin" required>
+                            <span class="platform-icon">💼 LinkedIn</span>
+                        </label>
+                        <label class="platform-option">
+                            <input type="radio" name="platform" value="twitter" required>
+                            <span class="platform-icon">🐦 Twitter</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="social-screenshot">Screenshot of Your Post</label>
+                    <div class="file-upload" onclick="document.getElementById('social-screenshot').click()">
+                        <input type="file" id="social-screenshot" name="social-screenshot" accept="image/*" required>
+                        <div class="upload-icon">📁</div>
+                        <div class="upload-text">Click to upload screenshot</div>
+                    </div>
+                </div>
+                
+                <div class="bonus-actions">
+                    <button type="submit" class="btn btn-primary">✅ Submit Social Share (+1 Entry)</button>
+                    <button type="button" class="btn btn-outline" onclick="hideSocialShare()">❌ Cancel</button>
+                </div>
+            </form>
+            
+            <!-- Referral Form -->
+            <div id="referral-form" class="bonus-form" style="display: none;">
+                <div class="referral-info">
+                    <h6>Your Personal Referral Link:</h6>
+                    <div class="referral-link-container">
+                        <input type="text" id="referral-link" readonly class="referral-link-input">
+                        <button class="btn btn-copy" onclick="copyReferralLink()">📋 Copy</button>
+                    </div>
+                    <p class="referral-note">Share this link with friends. When they enter, you both get +2 bonus entries!</p>
+                </div>
+                <button type="button" class="btn btn-outline" onclick="hideReferral()">❌ Close</button>
+            </div>
+            
+            <!-- Demo Booking Form -->
+            <form id="demo-booking-form" class="bonus-form" style="display: none;">
+                <div class="form-group">
+                    <label for="demo-name">Full Name</label>
+                    <input type="text" id="demo-name" name="demo-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="demo-email">Email Address</label>
+                    <input type="email" id="demo-email" name="demo-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="demo-time">Preferred Time (EST)</label>
+                    <select id="demo-time" name="demo-time" class="form-control" required>
+                        <option value="">Select a time slot</option>
+                        <option value="mon-10am">Monday 10:00 AM EST</option>
+                        <option value="mon-2pm">Monday 2:00 PM EST</option>
+                        <option value="tue-10am">Tuesday 10:00 AM EST</option>
+                        <option value="tue-2pm">Tuesday 2:00 PM EST</option>
+                        <option value="wed-10am">Wednesday 10:00 AM EST</option>
+                        <option value="wed-2pm">Wednesday 2:00 PM EST</option>
+                        <option value="thu-10am">Thursday 10:00 AM EST</option>
+                        <option value="thu-2pm">Thursday 2:00 PM EST</option>
+                        <option value="fri-10am">Friday 10:00 AM EST</option>
+                        <option value="fri-2pm">Friday 2:00 PM EST</option>
+                    </select>
+                </div>
+                
+                <div class="bonus-actions">
+                    <button type="submit" class="btn btn-primary">✅ Book Demo (+5 Entries!)</button>
+                    <button type="button" class="btn btn-outline" onclick="hideDemoBooking()">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
 
         <div class="entry-methods">
             <!-- Proof Upload Method -->
@@ -1104,6 +1501,56 @@
             }, 5000);
         }
 
+        // Bonus Entries Functions
+        function showSocialShare() {
+            document.getElementById('social-share-form').style.display = 'block';
+            document.getElementById('referral-form').style.display = 'none';
+            document.getElementById('demo-booking-form').style.display = 'none';
+        }
+        
+        function hideSocialShare() {
+            document.getElementById('social-share-form').style.display = 'none';
+        }
+        
+        function showReferral() {
+            const userEmail = localStorage.getItem('user_email') || 'user@example.com';
+            const referralLink = `https://luckyclubwins.com/jjj?ref=${encodeURIComponent(userEmail)}`;
+            document.getElementById('referral-link').value = referralLink;
+            
+            document.getElementById('referral-form').style.display = 'block';
+            document.getElementById('social-share-form').style.display = 'none';
+            document.getElementById('demo-booking-form').style.display = 'none';
+        }
+        
+        function hideReferral() {
+            document.getElementById('referral-form').style.display = 'none';
+        }
+        
+        function copyReferralLink() {
+            const referralInput = document.getElementById('referral-link');
+            referralInput.select();
+            referralInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            
+            // Show feedback
+            const copyBtn = document.querySelector('.btn-copy');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+        
+        function showDemoBooking() {
+            document.getElementById('demo-booking-form').style.display = 'block';
+            document.getElementById('social-share-form').style.display = 'none';
+            document.getElementById('referral-form').style.display = 'none';
+        }
+        
+        function hideDemoBooking() {
+            document.getElementById('demo-booking-form').style.display = 'none';
+        }
+
         function updateStats(data) {
             // Update user statistics on the page
             if (data.user_stats) {
@@ -1138,8 +1585,53 @@
             window.location.href = '/dashboard';
         }
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', checkAuth);
+        // Handle form submissions
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // Handle social share form submission
+            const socialShareForm = document.getElementById('social-share-form');
+            if (socialShareForm) {
+                socialShareForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const platform = document.querySelector('input[name="platform"]:checked');
+                    const screenshot = document.getElementById('social-screenshot').files[0];
+                    
+                    if (!platform) {
+                        alert('Please select a platform (LinkedIn or Twitter).');
+                        return;
+                    }
+                    
+                    if (!screenshot) {
+                        alert('Please upload a screenshot of your social media post.');
+                        return;
+                    }
+                    
+                    // Simulate API call
+                    alert(`✅ Social share submitted for ${platform.value}! +1 bonus entry added to your account.`);
+                    this.reset();
+                    hideSocialShare();
+                });
+            }
+            
+            // Handle demo booking form submission
+            const demoBookingForm = document.getElementById('demo-booking-form');
+            if (demoBookingForm) {
+                demoBookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('demo-name').value;
+                    const email = document.getElementById('demo-email').value;
+                    const time = document.getElementById('demo-time').value;
+                    
+                    // Simulate API call
+                    alert(`✅ Demo booked for ${time}! +5 bonus entries added to your account. We'll email you confirmation shortly.`);
+                    this.reset();
+                    hideDemoBooking();
+                });
+            }
+        });
     </script>
 </body>
 </html>
